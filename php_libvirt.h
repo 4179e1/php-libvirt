@@ -34,12 +34,27 @@ typedef struct _php_libvirt_domain {
 
 typedef struct _php_libvirt_storagepool {
     virStoragePoolPtr pool;
+    php_libvirt_connection* conn;
 } php_libvirt_storagepool;
 
 typedef struct _php_libvirt_volume {
     virStorageVolPtr volume;
 } php_libvirt_volume;
 
+typedef struct _php_libvirt_network {
+	virNetworkPtr network;
+	php_libvirt_connection *conn;
+} php_libvirt_network;
+
+typedef struct _php_libivrt_device {
+	virNodeDevicePtr device;
+	php_libvirt_connection *conn;
+} php_libvirt_device;
+
+typedef struct _php_libvirt_interface {
+	virInterfacePtr interface;
+	php_libvirt_connection *conn;
+} php_libvirt_interface;
 
 typedef struct _php_libvirt_cred_value {
 	int count;
@@ -53,6 +68,9 @@ typedef struct _php_libvirt_cred_value {
 #define PHP_LIBVIRT_DOMAIN_RES_NAME "Libvirt domain"
 #define PHP_LIBVIRT_STORAGEPOOL_RES_NAME "Libvirt storagepool"
 #define PHP_LIBVIRT_VOLUME_RES_NAME "Libvirt volume"
+#define PHP_LIBVIRT_NETWORK_RES_NAME "Libvirt network"
+#define PHP_LIBVIRT_DEVICE_RES_NAME "Libvirt device"
+#define PHP_LIBVIRT_INTERFACE_RES_NAME "Libvirt interface"
 
 PHP_MINIT_FUNCTION(libvirt);
 PHP_MSHUTDOWN_FUNCTION(libvirt);
@@ -64,13 +82,24 @@ PHP_FUNCTION(libvirt_get_last_error);
 PHP_FUNCTION(libvirt_connect);
 PHP_FUNCTION(libvirt_get_hostname);
 PHP_FUNCTION(libvirt_node_get_info);
+PHP_FUNCTION(libvirt_get_capabilities);
+PHP_FUNCTION(libvirt_get_max_vcpus);
+PHP_FUNCTION(libvirt_node_get_free_memory);
+PHP_FUNCTION(libvirt_get_type);
+PHP_FUNCTION(libvirt_get_version);
+PHP_FUNCTION(libvirt_get_lib_version);
+PHP_FUNCTION(libvirt_get_uri);
 PHP_FUNCTION(libvirt_get_active_domain_count);
-PHP_FUNCTION(libvirt_get_inactive_domain_count);
+PHP_FUNCTION(libvirt_get_defined_domain_count);
 PHP_FUNCTION(libvirt_get_domain_count);
+PHP_FUNCTION(libvirt_get_domain_state_string);
 PHP_FUNCTION(libvirt_domain_lookup_by_name);
 PHP_FUNCTION(libvirt_domain_get_xml_desc);
 PHP_FUNCTION(libvirt_domain_get_info);
 PHP_FUNCTION(libvirt_list_domains);
+PHP_FUNCTION(libvirt_list_domain_names);
+PHP_FUNCTION(libvirt_list_active_domain_names);
+PHP_FUNCTION(libvirt_list_defined_domain_names);
 PHP_FUNCTION(libvirt_domain_get_uuid);
 PHP_FUNCTION(libvirt_domain_get_uuid_string);
 PHP_FUNCTION(libvirt_domain_get_name);
@@ -95,6 +124,9 @@ PHP_FUNCTION(libvirt_domain_memory_stats);
 #endif
 PHP_FUNCTION(libvirt_domain_block_stats);
 PHP_FUNCTION(libvirt_domain_interface_stats);
+PHP_FUNCTION(libvirt_domain_get_autostart);
+PHP_FUNCTION(libvirt_domain_set_autostart);
+PHP_FUNCTION(libvirt_domain_is_active);
 PHP_FUNCTION(libvirt_version);
 PHP_FUNCTION(libvirt_domain_get_connect);
 PHP_FUNCTION(libvirt_domain_migrate);
@@ -103,14 +135,85 @@ PHP_FUNCTION(libvirt_domain_get_job_info);
 #endif
 PHP_FUNCTION(libvirt_domain_migrate_to_uri);
 PHP_FUNCTION(libvirt_list_storagepools);
+PHP_FUNCTION(libvirt_list_active_storagepools);
+PHP_FUNCTION(libvirt_list_defined_storagepools);
+PHP_FUNCTION(libvirt_get_storagepool_state_string);
+PHP_FUNCTION(libvirt_storagepool_get_uuid_string);
 PHP_FUNCTION(libvirt_storagepool_lookup_by_name);
 PHP_FUNCTION(libvirt_storagepool_list_volumes);
 PHP_FUNCTION(libvirt_storagepool_get_info);
+PHP_FUNCTION(libvirt_storagepool_get_name);
+PHP_FUNCTION(libvirt_storagepool_lookup_by_uuid_string);
+PHP_FUNCTION(libvirt_storagepool_get_xml_desc);
+PHP_FUNCTION(libvirt_storagepool_define_xml);
+PHP_FUNCTION(libvirt_storagepool_undefine);
+PHP_FUNCTION(libvirt_storagepool_create);
+PHP_FUNCTION(libvirt_storagepool_destroy);
+PHP_FUNCTION(libvirt_storagepool_get_connect);
+PHP_FUNCTION(libvirt_storagepool_is_active);
+PHP_FUNCTION(libvirt_storagepool_get_volume_count);
+PHP_FUNCTION(libvirt_storagepool_refresh);
+PHP_FUNCTION(libvirt_storagepool_set_autostart);
+PHP_FUNCTION(libvirt_storagepool_get_autostart);
+PHP_FUNCTION(libvirt_get_storagepool_count);
+PHP_FUNCTION(libvirt_get_active_storagepool_count);
+PHP_FUNCTION(libvirt_get_defined_storagepool_count);
 PHP_FUNCTION(libvirt_storagevolume_lookup_by_name);
 PHP_FUNCTION(libvirt_storagevolume_get_info);
 PHP_FUNCTION(libvirt_storagevolume_get_xml_desc);
 PHP_FUNCTION(libvirt_storagevolume_create_xml);
+PHP_FUNCTION(libvirt_storagevolume_get_path);
+PHP_FUNCTION(libvirt_storagevolume_get_name);
+PHP_FUNCTION(libvirt_get_storagevolume_type_string);
+PHP_FUNCTION(libvirt_list_networks);
+PHP_FUNCTION(libvirt_list_active_networks);
+PHP_FUNCTION(libvirt_list_defined_networks);
+PHP_FUNCTION(libvirt_get_network_count);
+PHP_FUNCTION(libvirt_get_active_network_count);
+PHP_FUNCTION(libvirt_get_defined_network_count);
+PHP_FUNCTION(libvirt_network_define_xml);
+PHP_FUNCTION(libvirt_network_create);
+PHP_FUNCTION(libvirt_network_destroy);
+PHP_FUNCTION(libvirt_network_undefine);
+PHP_FUNCTION(libvirt_network_get_autostart);
+PHP_FUNCTION(libvirt_network_get_bridge_name);
+PHP_FUNCTION(libvirt_network_get_connect);
+PHP_FUNCTION(libvirt_network_get_name);
+PHP_FUNCTION(libvirt_network_get_uuid_string);
+PHP_FUNCTION(libvirt_network_get_xml_desc);
+PHP_FUNCTION(libvirt_network_is_active);
+PHP_FUNCTION(libvirt_network_lookup_by_name);
+PHP_FUNCTION(libvirt_network_lookup_by_uuid_string);
+PHP_FUNCTION(libvirt_network_set_autostart);
+PHP_FUNCTION(libvirt_domain_attach_device);
+PHP_FUNCTION(libvirt_domain_detach_device);
+PHP_FUNCTION(libvirt_node_device_destroy);
+PHP_FUNCTION(libvirt_node_device_dettach);
+PHP_FUNCTION(libvirt_node_device_get_name);
+PHP_FUNCTION(libvirt_node_device_get_parent);
+PHP_FUNCTION(libvirt_node_device_get_xml_desc);
+PHP_FUNCTION(libvirt_node_device_lookup_by_name);
+PHP_FUNCTION(libvirt_node_device_num_of_caps);
+PHP_FUNCTION(libvirt_node_device_reattach);
+PHP_FUNCTION(libvirt_node_device_reset);
+PHP_FUNCTION(libvirt_list_node_device);
+PHP_FUNCTION(libvirt_get_node_device_count);
 
+PHP_FUNCTION(libvirt_list_interfaces);
+PHP_FUNCTION(libvirt_list_active_interfaces);
+PHP_FUNCTION(libvirt_list_defined_interfaces);
+PHP_FUNCTION(libvirt_get_interface_count);
+PHP_FUNCTION(libvirt_get_active_interface_count);
+PHP_FUNCTION(libvirt_get_defined_interface_count);
+PHP_FUNCTION(libvirt_interface_create);
+PHP_FUNCTION(libvirt_interface_define_xml);
+PHP_FUNCTION(libvirt_interface_get_connect);
+PHP_FUNCTION(libvirt_interface_get_mac_string);
+PHP_FUNCTION(libvirt_interface_get_name);
+PHP_FUNCTION(libvirt_interface_get_xml_desc);
+PHP_FUNCTION(libvirt_interface_lookup_by_mac_string);
+PHP_FUNCTION(libvirt_interface_lookup_by_name);
+PHP_FUNCTION(libvirt_interface_undefine);
 
 extern zend_module_entry libvirt_module_entry;
 #define phpext_libvirt_ptr &libvirt_module_entry
