@@ -21,3 +21,12 @@ if test "$PHP_LIBVIRT" = "yes"; then
   PHP_NEW_EXTENSION(libvirt, libvirt.c, $ext_shared)
   PHP_SUBST(LIBVIRT_SHARED_LIBADD)
 fi
+
+ac_cv_enable_getconnect="no"
+AC_ARG_ENABLE([getconnect],
+		[  --enable-getconnect [default=disabled]],
+		[ac_cv_enable_getconnect=$enableval], [ac_cv_enable_getconnect=no])
+AC_CACHE_CHECK([whetehr to enable *get_connect functions], [ac_cv_enable_getconnect], [ac_cv_enable_getconnect=yes])
+if test "$ac_cv_enable_getconnect" = yes; then
+	AC_DEFINE([HAVE_GETCONNECT], [1], [Define to enable *get_connect functions])
+fi
