@@ -214,6 +214,7 @@ PHP_FUNCTION(libvirt_interface_get_xml_desc);
 PHP_FUNCTION(libvirt_interface_lookup_by_mac_string);
 PHP_FUNCTION(libvirt_interface_lookup_by_name);
 PHP_FUNCTION(libvirt_interface_undefine);
+PHP_FUNCTION(libvirt_interface_is_active);
 
 extern zend_module_entry libvirt_module_entry;
 #define phpext_libvirt_ptr &libvirt_module_entry

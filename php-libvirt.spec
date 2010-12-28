@@ -8,14 +8,14 @@
 %endif
 
 Name:		php-libvirt
-Version:	0.3a
+Version:	0.4
 Release:	1%{?dist}
 Summary:	PHP langueage binding for Libvirt
 Group:		Development/Libraries/PHP
 License:	PHP
 URL:		http://phplibvirt.cybersales.cz/
-Source0:	php-libvirt.tar.bz2
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Source0:	%{name}-%{version}.tar.bz2
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root)
 
 BuildRequires:	php-devel
 BuildRequires:	libvirt-devel >= %{req_libvirt_version}

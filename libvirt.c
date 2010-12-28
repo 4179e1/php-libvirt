@@ -156,7 +156,6 @@ static function_entry libvirt_functions[] = {
 	 PHP_FE(libvirt_node_device_reset, NULL)
 	 PHP_FE(libvirt_list_node_device, NULL)
 	 PHP_FE(libvirt_get_node_device_count, NULL)
-#if 0
 	 PHP_FE(libvirt_list_interfaces, NULL)
 	 PHP_FE(libvirt_list_active_interfaces, NULL)
 	 PHP_FE(libvirt_list_defined_interfaces, NULL)
@@ -174,7 +173,7 @@ static function_entry libvirt_functions[] = {
 	 PHP_FE(libvirt_interface_lookup_by_mac_string, NULL)
 	 PHP_FE(libvirt_interface_lookup_by_name, NULL)
 	 PHP_FE(libvirt_interface_undefine, NULL)
-#endif
+	 PHP_FE(libvirt_interface_is_active, NULL)
      {NULL, NULL, NULL}
 };
 
@@ -484,6 +483,14 @@ PHP_MSHUTDOWN_FUNCTION(libvirt)
 \
 	ZEND_FETCH_RESOURCE(device, php_libvirt_device*, &zdevice, -1, PHP_LIBVIRT_DEVICE_RES_NAME, le_libvirt_device);\
 	if ((device == NULL) || (device->device == NULL)) RETURN_FALSE;
+
+#define GET_INTERFACE_FROM_ARGS(args, ...) \
+	if (zend_parse_parameters (ZEND_NUM_ARGS() TSRMLS_CC, args, __VA_ARGS__) == FAILURE) {\
+		RETURN_FALSE;\
+	}\
+\
+	ZEND_FETCH_RESOURCE(interface, php_libvirt_interface*, &zinterface, -1, PHP_LIBVIRT_INTERFACE_RES_NAME, le_libvirt_interface);\
+	if ((interface == NULL) || (interface->interface == NULL)) RETURN_FALSE;
 
 //Macro to "recreate" string with emalloc and free the original one
 #define RECREATE_STRING_WITH_E(str_out, str_in) \
@@ -3077,76 +3084,333 @@ PHP_FUNCTION(libvirt_get_node_device_count)
 
 PHP_FUNCTION(libvirt_list_interfaces)
 {
-	RETURN_FALSE;
+	php_libvirt_connection *conn = NULL;
+	zval *zconn;
+	int count;
+	int i;
+
+	GET_CONNECTION_FROM_ARGS ("r", &zconn);
+
+	array_init (return_value);
+
+	count = virConnectNumOfInterfaces (conn->conn);
+	char *names[count];
+	count = virConnectListInterfaces (conn->conn, names, count);
+	if (count < 0)
+	{
+		RETURN_FALSE;
+	}
+	for (i = 0; i < count; i++)
+	{
+		add_next_index_string (return_value, names[i], 1);
+		free (names[i]);
+	}
+
+	count = virConnectNumOfDefinedInterfaces (conn->conn);
+	char *namez[count];
+	count = virConnectListInterfaces (conn->conn, namez, count);
+	if (count < 0)
+	{
+		RETURN_FALSE;
+	}
+	for (i = 0; i < count; i++)
+	{
+		add_next_index_string (return_value, namez[i], 1);
+		free (namez[i]);
+	}
 }
 
 PHP_FUNCTION(libvirt_list_active_interfaces)
 {
-	RETURN_FALSE;
+	php_libvirt_connection *conn = NULL;
+	zval *zconn;
+	int count;
+	int i;
+
+	GET_CONNECTION_FROM_ARGS ("r", &zconn);
+
+	array_init (return_value);
+
+	count = virConnectNumOfInterfaces (conn->conn);
+	char *names[count];
+	count = virConnectListInterfaces (conn->conn, names, count);
+	if (count < 0)
+	{
+		RETURN_FALSE;
+	}
+	for (i = 0; i < count; i++)
+	{
+		add_next_index_string (return_value, names[i], 1);
+		free (names[i]);
+	}
 }
 
 PHP_FUNCTION(libvirt_list_defined_interfaces)
 {
-	RETURN_FALSE;
+	php_libvirt_connection *conn = NULL;
+	zval *zconn;
+	int count;
+	int i;
+
+	GET_CONNECTION_FROM_ARGS ("r", &zconn);
+
+	array_init (return_value);
+
+	count = virConnectNumOfDefinedInterfaces (conn->conn);
+	char *namez[count];
+	count = virConnectListDefinedInterfaces (conn->conn, namez, count);
+	if (count < 0)
+	{
+		RETURN_FALSE;
+	}
+	for (i = 0; i < count; i++)
+	{
+		add_next_index_string (return_value, namez[i], 1);
+		free (namez[i]);
+	}
 }
 
 PHP_FUNCTION(libvirt_get_interface_count)
 {
-	RETURN_FALSE;
+	php_libvirt_connection *conn = NULL;
+	zval *zconn;
+	int a;
+	int b;
+
+	GET_CONNECTION_FROM_ARGS ("r", &zconn);
+
+	a = virConnectNumOfInterfaces (conn->conn);
+	if (a < 0)
+	{
+		RETURN_FALSE;
+	}
+
+	b = virConnectNumOfDefinedInterfaces (conn->conn);
+	if (b < 0)
+	{
+		RETURN_FALSE;
+	}
+
+	RETURN_LONG (a + b);
 }
 
 PHP_FUNCTION(libvirt_get_active_interface_count)
 {
-	RETURN_FALSE;
+	php_libvirt_connection *conn = NULL;
+	zval *zconn;
+	int count;
+
+	GET_CONNECTION_FROM_ARGS ("r", &zconn);
+
+	count = virConnectNumOfInterfaces (conn->conn);
+	if (count < 0)
+	{
+		RETURN_FALSE;
+	}
+	RETURN_LONG (count);
 }
 
 PHP_FUNCTION(libvirt_get_defined_interface_count)
 {
-	RETURN_FALSE;
+	php_libvirt_connection *conn = NULL;
+	zval *zconn;
+	int count;
+
+	GET_CONNECTION_FROM_ARGS ("r", &zconn);
+
+	count = virConnectNumOfDefinedInterfaces (conn->conn);
+	if (count < 0)
+	{
+		RETURN_FALSE;
+	}
+	RETURN_LONG (count);
 }
 
 PHP_FUNCTION(libvirt_interface_create)
 {
-	RETURN_FALSE;
+	php_libvirt_interface *interface = NULL;
+	zval *zinterface;
+
+	GET_INTERFACE_FROM_ARGS("r", &zinterface);
+
+	if (virInterfaceCreate (interface->interface, 0) != 0)
+	{
+		RETURN_FALSE;
+	}
+
+	RETURN_TRUE;
 }
 
 PHP_FUNCTION(libvirt_interface_define_xml)
 {
-	RETURN_FALSE;
+	php_libvirt_connection *conn = NULL;
+	zval *zconn;
+	virInterfacePtr interface;
+	php_libvirt_interface *res_interface;
+	char *xml;
+	int xml_len;
+
+	GET_CONNECTION_FROM_ARGS ("rs", &zconn, &xml, &xml_len);
+	if ((xml == NULL) || (xml_len < 1)) 
+	{
+		RETURN_FALSE;
+	}
+
+	interface = virInterfaceDefineXML (conn->conn, xml, 0);
+
+	res_interface = emalloc (sizeof (php_libvirt_interface));
+
+	res_interface->interface = interface;
+	res_interface->conn = conn;
+
+	ZEND_REGISTER_RESOURCE (return_value, res_interface, le_libvirt_interface);
 }
 
 PHP_FUNCTION(libvirt_interface_get_connect)
 {
-	RETURN_FALSE;
+	php_libvirt_interface *interface = NULL;
+	php_libvirt_connection *conn;
+	zval *zinterface;
+
+	GET_INTERFACE_FROM_ARGS ("r", &zinterface);
+
+	conn = interface->conn;
+	if (conn == NULL)
+	{
+		RETURN_FALSE;
+	}
+	
+	RETURN_RESOURCE (conn->resource_id);
 }
 
 PHP_FUNCTION(libvirt_interface_get_mac_string)
 {
-	RETURN_FALSE;
+	php_libvirt_interface *interface = NULL;
+	zval *zinterface;
+	const char *mac;
+
+	GET_INTERFACE_FROM_ARGS ("r", &zinterface);
+	mac = virInterfaceGetMACString (interface->interface);
+	if (mac == NULL)
+	{
+		RETURN_FALSE;
+	}
+	RETURN_STRING (mac, 1);
 }
 
 PHP_FUNCTION(libvirt_interface_get_name)
 {
-	RETURN_FALSE;
+	php_libvirt_interface *interface = NULL;
+	zval *zinterface;
+	const char *name;
+
+	GET_INTERFACE_FROM_ARGS ("r", &zinterface);
+	name = virInterfaceGetName (interface->interface);
+	if (name == NULL)
+	{
+		RETURN_FALSE;
+	}
+	RETURN_STRING (name, 1);
 }
 
 PHP_FUNCTION(libvirt_interface_get_xml_desc)
 {
-	RETURN_FALSE;
+	php_libvirt_interface *interface = NULL;
+	zval *zinterface;
+	long flags = 0;
+	char *xml;
+	char *xml_out;
+
+	GET_INTERFACE_FROM_ARGS ("r|l", &zinterface, &flags);
+
+	xml = virInterfaceGetXMLDesc (interface->interface, (unsigned int)flags);
+	if (xml == NULL)
+	{
+		RETURN_FALSE;
+	}
+
+	RECREATE_STRING_WITH_E (xml_out, xml);
+
+	RETURN_STRING (xml_out, 1);
 }
 
 PHP_FUNCTION(libvirt_interface_lookup_by_mac_string)
 {
-	RETURN_FALSE;
+	php_libvirt_connection *conn = NULL;
+	zval *zconn;
+	virInterfacePtr interface;
+	php_libvirt_interface *res_interface;
+	char *val;
+	int len;
+	
+	GET_CONNECTION_FROM_ARGS ("rs", &zconn, &val, &len);
+	if ((val == NULL) || (len < 1))
+	{
+		RETURN_FALSE;
+	}
+
+	interface = virInterfaceLookupByMACString (conn->conn, val);
+	if (interface == NULL)
+	{
+		RETURN_FALSE;
+	}
+
+	res_interface = emalloc (sizeof (php_libvirt_interface));
+	res_interface->interface = interface;
+	res_interface->conn = conn;
+
+	ZEND_REGISTER_RESOURCE (return_value, res_interface, le_libvirt_interface);
 }
 
 PHP_FUNCTION(libvirt_interface_lookup_by_name)
 {
-	RETURN_FALSE;
+	php_libvirt_connection *conn = NULL;
+	zval *zconn;
+	virInterfacePtr interface;
+	php_libvirt_interface *res_interface;
+	char *val;
+	int len;
+	
+	GET_CONNECTION_FROM_ARGS ("rs", &zconn, &val, &len);
+	if ((val == NULL) || (len < 1))
+	{
+		RETURN_FALSE;
+	}
+
+	interface = virInterfaceLookupByName (conn->conn, val);
+	if (interface == NULL)
+	{
+		RETURN_FALSE;
+	}
+
+	res_interface = emalloc (sizeof (php_libvirt_interface));
+	res_interface->interface = interface;
+	res_interface->conn = conn;
+
+	ZEND_REGISTER_RESOURCE (return_value, res_interface, le_libvirt_interface);
 }
 
 PHP_FUNCTION(libvirt_interface_undefine)
 {
-	RETURN_FALSE;
+	php_libvirt_interface *interface;
+	zval *zinterface;
+
+	GET_INTERFACE_FROM_ARGS ("r", &zinterface);
+
+	if (virInterfaceUndefine (interface->interface) != 0)
+	{
+		RETURN_FALSE;
+	}
+
+	RETURN_TRUE;
 }
 
+PHP_FUNCTION(libvirt_interface_is_active)
+{
+	php_libvirt_interface *interface;
+	zval *zinterface;
+
+	GET_INTERFACE_FROM_ARGS ("r", &zinterface);
+
+	RETURN_LONG (virInterfaceIsActive (interface->interface));
+}
