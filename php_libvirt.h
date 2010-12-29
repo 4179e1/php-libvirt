@@ -46,15 +46,19 @@ typedef struct _php_libvirt_network {
 	php_libvirt_connection *conn;
 } php_libvirt_network;
 
-typedef struct _php_libivrt_device {
+typedef struct _php_libivrt_node_device {
 	virNodeDevicePtr device;
 	php_libvirt_connection *conn;
-} php_libvirt_device;
+} php_libvirt_node_device;
 
 typedef struct _php_libvirt_interface {
 	virInterfacePtr interface;
 	php_libvirt_connection *conn;
 } php_libvirt_interface;
+
+typedef struct _php_libvirt_domain_snapshot {
+	virDomainSnapshotPtr snapshot;
+} php_libvirt_domain_snapshot;
 
 typedef struct _php_libvirt_cred_value {
 	int count;
@@ -69,8 +73,9 @@ typedef struct _php_libvirt_cred_value {
 #define PHP_LIBVIRT_STORAGEPOOL_RES_NAME "Libvirt storagepool"
 #define PHP_LIBVIRT_VOLUME_RES_NAME "Libvirt volume"
 #define PHP_LIBVIRT_NETWORK_RES_NAME "Libvirt network"
-#define PHP_LIBVIRT_DEVICE_RES_NAME "Libvirt device"
+#define PHP_LIBVIRT_HOST_DEVICE_RES_NAME "Libvirt device"
 #define PHP_LIBVIRT_INTERFACE_RES_NAME "Libvirt interface"
+#define PHP_LIBVIRT_DOMAIN_SNAPSHOT_RES_NAME "Libvirt snapshot"
 
 PHP_MINIT_FUNCTION(libvirt);
 PHP_MSHUTDOWN_FUNCTION(libvirt);
@@ -215,6 +220,16 @@ PHP_FUNCTION(libvirt_interface_lookup_by_mac_string);
 PHP_FUNCTION(libvirt_interface_lookup_by_name);
 PHP_FUNCTION(libvirt_interface_undefine);
 PHP_FUNCTION(libvirt_interface_is_active);
+
+PHP_FUNCTION(libvirt_domain_has_current_snapshot);
+PHP_FUNCTION(libvirt_domain_revert_to_snapshot);
+PHP_FUNCTION(libvirt_domain_snapshot_create_xml);
+PHP_FUNCTION(libvirt_domain_snapshot_current);
+PHP_FUNCTION(libvirt_domain_snapshot_delete);
+PHP_FUNCTION(libvirt_domain_snapshot_get_xml_desc);
+PHP_FUNCTION(libvirt_domain_snapshot_list);
+PHP_FUNCTION(libvirt_domain_snapshot_lookup_by_name);
+PHP_FUNCTION(libvirt_domain_snapshot_count);
 
 extern zend_module_entry libvirt_module_entry;
 #define phpext_libvirt_ptr &libvirt_module_entry
