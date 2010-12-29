@@ -15,7 +15,7 @@ Group:		Development/Libraries/PHP
 License:	PHP
 URL:		http://phplibvirt.cybersales.cz/
 Source0:	%{name}-%{version}.tar.bz2
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root)
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires:	php-devel
 BuildRequires:	libvirt-devel >= %{req_libvirt_version}
