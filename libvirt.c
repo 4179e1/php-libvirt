@@ -33,6 +33,7 @@ ZEND_END_ARG_INFO()
 static function_entry libvirt_functions[] = {
      PHP_FE(libvirt_get_last_error,NULL)
      PHP_FE(libvirt_connect, arginfo_libvirt_connect)
+	 PHP_FE(libvirt_close, NULL)
      PHP_FE(libvirt_get_hostname, NULL)
      PHP_FE(libvirt_node_get_info,NULL)
 	 PHP_FE(libvirt_get_capabilities, NULL)
@@ -273,6 +274,7 @@ static void php_libvirt_connection_dtor(zend_rsrc_list_entry *rsrc TSRMLS_DC)
     if (rv!=0)
         php_error_docref(NULL TSRMLS_CC, E_WARNING,"virConnectClose failed with %d on destructor",rv);
     conn->conn=NULL;
+	pefree (conn, 1);
 }
 
 //Destructor for domain resource
@@ -375,7 +377,7 @@ static void php_libvirt_domain_snapshot_dtor (zend_rsrc_list_entry *rsrc TSRMLS_
 //ZEND Module inicialization function
 PHP_MINIT_FUNCTION(libvirt)
 {
-    le_libvirt_connection = zend_register_list_destructors_ex(php_libvirt_connection_dtor, NULL, PHP_LIBVIRT_CONNECTION_RES_NAME, module_number);
+    le_libvirt_connection = zend_register_list_destructors_ex(NULL, php_libvirt_connection_dtor, PHP_LIBVIRT_CONNECTION_RES_NAME, module_number);
     le_libvirt_domain = zend_register_list_destructors_ex(php_libvirt_domain_dtor, NULL, PHP_LIBVIRT_DOMAIN_RES_NAME, module_number);  //register resource types and theis descriptors
     le_libvirt_storagepool = zend_register_list_destructors_ex(php_libvirt_storagepool_dtor, NULL, PHP_LIBVIRT_STORAGEPOOL_RES_NAME, module_number);
     le_libvirt_volume = zend_register_list_destructors_ex(php_libvirt_volume_dtor, NULL, PHP_LIBVIRT_VOLUME_RES_NAME, module_number);
@@ -613,6 +615,10 @@ PHP_FUNCTION(libvirt_connect)
     int i;
     int j;
     int credscount=0;
+	char *le_key;
+	int le_key_len;
+	list_entry *le;
+	list_entry new_le;
     
     virConnectAuth libvirt_virConnectAuth= {  	libvirt_virConnectCredType, sizeof(libvirt_virConnectCredType)/sizeof(int), libvirt_virConnectAuthCallback,NULL};
     
@@ -647,7 +653,15 @@ PHP_FUNCTION(libvirt_connect)
 	   RETURN_FALSE;
    }
 
-    conn=emalloc(sizeof(php_libvirt_connection));
+	le_key_len = spprintf (&le_key, 0, "libvirt_connection_%s\n", url);
+	if (zend_hash_find (&EG(persistent_list), le_key, le_key_len + 1, (void **)&le) == SUCCESS)
+	{
+		ZEND_REGISTER_RESOURCE (return_value, le->ptr, le_libvirt_connection);
+		efree (le_key);
+		return;
+	}
+
+    conn=pemalloc(sizeof(php_libvirt_connection), 1);
     if (zcreds==NULL)
     {	//connecting without providing authentication
 	    if (readonly)
@@ -690,11 +704,35 @@ PHP_FUNCTION(libvirt_connect)
 	  efree(creds);
     }
 
-    if (conn->conn == NULL) RETURN_FALSE;
+    if (conn->conn == NULL)
+	{
+		efree (le_key);
+		pefree (conn, 1);
+ 		RETURN_FALSE;
+	}
+	
     ZEND_REGISTER_RESOURCE(return_value, conn, le_libvirt_connection);
     conn->resource_id=Z_LVAL_P(return_value);
+
+	new_le.ptr = conn;
+	new_le.type = le_libvirt_connection;
+	zend_hash_add (&EG(persistent_list), le_key, le_key_len + 1, &new_le, sizeof (list_entry), NULL);
+
+	efree (le_key);
 } 
 
+PHP_FUNCTION (libvirt_close)
+{
+	zval *zconn;
+
+	if (zend_parse_parameters (ZEND_NUM_ARGS() TSRMLS_CC, "r", &zconn) == FAILURE)
+	{
+		RETURN_FALSE;
+	}
+	
+	zend_list_delete (Z_LVAL_P(zconn));
+	RETURN_TRUE;
+}
 
 PHP_FUNCTION(libvirt_get_hostname)
 {

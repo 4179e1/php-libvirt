@@ -68,5 +68,6 @@ rm -rf %{buildroot}
 
 %changelog
 
-*Fri Dec 24 2010 <liyong@skybility.com> 0.3a
+*Fri Dec 24 2010 <liyong@skybility.com> 0.4
 -Add a lot of APIs.
+-Changed connection to persist resource.
