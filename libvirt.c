@@ -14,7 +14,6 @@
 
 //----------------- ZEND thread safe per request globals definition 
 int le_libvirt_connection;
-int le_libvirt_connection_persist;
 int le_libvirt_domain;
 int le_libvirt_storagepool;
 int le_libvirt_volume;
@@ -276,16 +275,6 @@ static void php_libvirt_connection_dtor(zend_rsrc_list_entry *rsrc TSRMLS_DC)
     conn->conn=NULL;
 }
 
-static void php_libvirt_connection_persist_dtor(zend_rsrc_list_entry *rsrc TSRMLS_DC)
-{
-    php_libvirt_connection *conn = (php_libvirt_connection*)rsrc->ptr;
-    int rv;
-    rv = virConnectClose(conn->conn);
-    if (rv!=0)
-        php_error_docref(NULL TSRMLS_CC, E_WARNING,"virConnectClose failed with %d on destructor",rv);
-    conn->conn=NULL;
-}
-
 //Destructor for domain resource
 static void php_libvirt_domain_dtor(zend_rsrc_list_entry *rsrc TSRMLS_DC)
 {
@@ -387,7 +376,6 @@ static void php_libvirt_domain_snapshot_dtor (zend_rsrc_list_entry *rsrc TSRMLS_
 PHP_MINIT_FUNCTION(libvirt)
 {
     le_libvirt_connection = zend_register_list_destructors_ex(php_libvirt_connection_dtor, NULL, PHP_LIBVIRT_CONNECTION_RES_NAME, module_number);
-    le_libvirt_connection_persist = zend_register_list_destructors_ex(NULL, php_libvirt_connection_persist_dtor, PHP_LIBVIRT_CONNECTION_RES_NAME, module_number);
     le_libvirt_domain = zend_register_list_destructors_ex(php_libvirt_domain_dtor, NULL, PHP_LIBVIRT_DOMAIN_RES_NAME, module_number);  //register resource types and theis descriptors
     le_libvirt_storagepool = zend_register_list_destructors_ex(php_libvirt_storagepool_dtor, NULL, PHP_LIBVIRT_STORAGEPOOL_RES_NAME, module_number);
     le_libvirt_volume = zend_register_list_destructors_ex(php_libvirt_volume_dtor, NULL, PHP_LIBVIRT_VOLUME_RES_NAME, module_number);
@@ -448,7 +436,7 @@ PHP_MINIT_FUNCTION(libvirt)
 	REGISTER_LONG_CONSTANT("VIR_DOMAIN_DEVICE_MODIFY_CURRENT", 0, CONST_CS | CONST_PERSISTENT);	//Modify device allocation based on current domain state
 	REGISTER_LONG_CONSTANT("VIR_DOMAIN_DEVICE_MODIFY_LIVE", 1, CONST_CS | CONST_PERSISTENT);	//Modify live device allocation
 	REGISTER_LONG_CONSTANT("VIR_DOMAIN_DEVICE_MODIFY_CONFIG", 2, CONST_CS | CONST_PERSISTENT);	//Modify persisted device allocation
-	REGISTER_LONG_CONSTANT("VIR_DOMAIN_DEVICE_MODIFY_CONFIG", 4, CONST_CS | CONST_PERSISTENT);	//Forcibly modify device (ex. force eject a cdrom)
+	REGISTER_LONG_CONSTANT("VIR_DOMAIN_DEVICE_MODIFY_FORCE", 4, CONST_CS | CONST_PERSISTENT);	//Forcibly modify device (ex. force eject a cdrom)
 
 	REGISTER_LONG_CONSTANT("VIR_DOMAIN_SNAPSHOT_DELETE_CHILEREN", 1, CONST_CS | CONST_PERSISTENT);
 
@@ -1655,7 +1643,6 @@ PHP_FUNCTION(libvirt_domain_get_connect)
 	GET_DOMAIN_FROM_ARGS("r",&zdomain);
 
 	 conn= domain->conn;
-	 //virConnectRef (conn->conn);
 	 if (conn->conn == NULL) RETURN_FALSE;
          RETURN_RESOURCE(conn->resource_id);
 }
@@ -1884,7 +1871,7 @@ PHP_FUNCTION (libvirt_get_domain_state_string)
 		"VIR_DOMAIN_SHUTOFF",
 		"VIR_DOAMIN_CRASHED"
 	};
-	int state;
+	long state;
 
 	if (zend_parse_parameters (ZEND_NUM_ARGS() TSRMLS_CC, "l", &state) == FAILURE)
 	{
@@ -1909,8 +1896,7 @@ PHP_FUNCTION (libvirt_get_storagepool_state_string)
 		"VIR_STORAGE_POOL_DEGRADED",
 		"VIR_STORAGE_POOL_INACCESSIBLE"
 	};
-	int state;
-
+	long state; 
 	if (zend_parse_parameters (ZEND_NUM_ARGS() TSRMLS_CC, "l", &state) == FAILURE)
 	{
 		RETURN_FALSE;
