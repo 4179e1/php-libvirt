@@ -227,7 +227,7 @@ PHP_FUNCTION(libvirt_domain_snapshot_create_xml);
 PHP_FUNCTION(libvirt_domain_snapshot_current);
 PHP_FUNCTION(libvirt_domain_snapshot_delete);
 PHP_FUNCTION(libvirt_domain_snapshot_get_xml_desc);
-PHP_FUNCTION(libvirt_domain_snapshot_list);
+PHP_FUNCTION(libvirt_list_domain_snapshots);
 PHP_FUNCTION(libvirt_domain_snapshot_lookup_by_name);
 PHP_FUNCTION(libvirt_domain_snapshot_count);
 

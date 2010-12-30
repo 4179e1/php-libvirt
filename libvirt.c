@@ -14,6 +14,7 @@
 
 //----------------- ZEND thread safe per request globals definition 
 int le_libvirt_connection;
+int le_libvirt_connection_persist;
 int le_libvirt_domain;
 int le_libvirt_storagepool;
 int le_libvirt_volume;
@@ -181,7 +182,7 @@ static function_entry libvirt_functions[] = {
 	 PHP_FE(libvirt_domain_snapshot_current, NULL)
 	 PHP_FE(libvirt_domain_snapshot_delete, NULL)
 	 PHP_FE(libvirt_domain_snapshot_get_xml_desc, NULL)
-	 PHP_FE(libvirt_domain_snapshot_list, NULL)
+	 PHP_FE(libvirt_list_domain_snapshots, NULL)
 	 PHP_FE(libvirt_domain_snapshot_lookup_by_name, NULL)
 	 PHP_FE(libvirt_domain_snapshot_count, NULL)
      {NULL, NULL, NULL}
@@ -266,6 +267,16 @@ void catch_error(void *userData, virErrorPtr error)
 
 //Destructor for connection resource
 static void php_libvirt_connection_dtor(zend_rsrc_list_entry *rsrc TSRMLS_DC)
+{
+    php_libvirt_connection *conn = (php_libvirt_connection*)rsrc->ptr;
+    int rv;
+    rv = virConnectClose(conn->conn);
+    if (rv!=0)
+        php_error_docref(NULL TSRMLS_CC, E_WARNING,"virConnectClose failed with %d on destructor",rv);
+    conn->conn=NULL;
+}
+
+static void php_libvirt_connection_persist_dtor(zend_rsrc_list_entry *rsrc TSRMLS_DC)
 {
     php_libvirt_connection *conn = (php_libvirt_connection*)rsrc->ptr;
     int rv;
@@ -376,6 +387,7 @@ static void php_libvirt_domain_snapshot_dtor (zend_rsrc_list_entry *rsrc TSRMLS_
 PHP_MINIT_FUNCTION(libvirt)
 {
     le_libvirt_connection = zend_register_list_destructors_ex(php_libvirt_connection_dtor, NULL, PHP_LIBVIRT_CONNECTION_RES_NAME, module_number);
+    le_libvirt_connection_persist = zend_register_list_destructors_ex(NULL, php_libvirt_connection_persist_dtor, PHP_LIBVIRT_CONNECTION_RES_NAME, module_number);
     le_libvirt_domain = zend_register_list_destructors_ex(php_libvirt_domain_dtor, NULL, PHP_LIBVIRT_DOMAIN_RES_NAME, module_number);  //register resource types and theis descriptors
     le_libvirt_storagepool = zend_register_list_destructors_ex(php_libvirt_storagepool_dtor, NULL, PHP_LIBVIRT_STORAGEPOOL_RES_NAME, module_number);
     le_libvirt_volume = zend_register_list_destructors_ex(php_libvirt_volume_dtor, NULL, PHP_LIBVIRT_VOLUME_RES_NAME, module_number);
@@ -3565,7 +3577,7 @@ PHP_FUNCTION(libvirt_domain_snapshot_get_xml_desc)
 	RETURN_STRING (xml_out, 0);
 }
 
-PHP_FUNCTION(libvirt_domain_snapshot_list)
+PHP_FUNCTION(libvirt_list_domain_snapshots)
 {
 	php_libvirt_domain *domain = NULL;
 	zval *zdomain;
@@ -3577,7 +3589,7 @@ PHP_FUNCTION(libvirt_domain_snapshot_list)
 	count = virDomainSnapshotNum (domain->domain, 0);
 	char *names[count];
 	count = virDomainSnapshotListNames (domain->domain, names, count, 0);
-	if (count != 0)
+	if (count < 0)
 	{
 		RETURN_FALSE;
 	}
@@ -3633,7 +3645,7 @@ PHP_FUNCTION(libvirt_domain_snapshot_count)
 	GET_DOMAIN_FROM_ARGS ("r", &zdomain);
 
 	count = virDomainSnapshotNum(domain->domain, 0);
-	if (count != 0)
+	if (count < 0)
 	{
 		RETURN_FALSE;
 	}

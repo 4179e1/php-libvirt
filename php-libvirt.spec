@@ -17,11 +17,7 @@ URL:		http://phplibvirt.cybersales.cz/
 Source0:	%{name}-%{version}.tar.bz2
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
-%if 0%{?rhel_version} >= 600
-BuildRequires:	php wget
-%else
 BuildRequires:	php-devel
-%endif
 BuildRequires:	libvirt-devel >= %{req_libvirt_version}
 Requires:		libvirt >= %{req_libvirt_version}
 
@@ -41,15 +37,12 @@ For more details see: http://phplibvirt.cybersales.cz/ http://www.libvirt.org/ h
 This package contain the document for php-libvirt.
 
 %prep
-%if 0%{?rhel_version} >= 600
-rpm -ivh php-devel-5.3.1-7.el6.`uname -m`.rpm
-%endif
 %setup -q -n php-libvirt-%{version}
 phpize
 
 %build
 %configure
-./configure --enable-libvirt --libdir=%{_libdir} --prefix=%{_prefix}
+./configure --enable-libvirt --enable-getconnect --libdir=%{_libdir} --prefix=%{_prefix}
 make %{?_smp_mflags}
 
 %install
