@@ -85,7 +85,6 @@ PHP_MINFO_FUNCTION(libvirt);
 
 PHP_FUNCTION(libvirt_get_last_error);
 PHP_FUNCTION(libvirt_connect);
-PHP_FUNCTION(libvirt_close);
 PHP_FUNCTION(libvirt_get_hostname);
 PHP_FUNCTION(libvirt_node_get_info);
 PHP_FUNCTION(libvirt_get_capabilities);
