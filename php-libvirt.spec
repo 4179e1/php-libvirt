@@ -42,7 +42,7 @@ phpize
 
 %build
 %configure
-./configure --enable-libvirt --enable-getconnect --libdir=%{_libdir} --prefix=%{_prefix}
+./configure --enable-libvirt --libdir=%{_libdir} --prefix=%{_prefix}
 make %{?_smp_mflags}
 
 %install
@@ -68,5 +68,5 @@ rm -rf %{buildroot}
 
 %changelog
 
-*Fri Dec 24 2010 <liyong@skybility.com> 0.3a
+*Fri Dec 24 2010 <liyong@skybility.com> 0.4
 -Add a lot of APIs.

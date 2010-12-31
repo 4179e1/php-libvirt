@@ -1,7 +1,3 @@
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #include "php.h"
 #include "php_ini.h"
 #include "php_libvirt.h"
@@ -815,7 +811,9 @@ PHP_FUNCTION(libvirt_domain_lookup_by_name)
 	 res_domain= emalloc(sizeof(php_libvirt_domain));
 	 res_domain->domain = domain;
 
-         res_domain->conn= conn;
+#ifdef HAVE_GETCONNECT
+     res_domain->conn= conn;
+#endif /* HAVE_GETCONNECT */
 
 	 ZEND_REGISTER_RESOURCE(return_value, res_domain, le_libvirt_domain);
 }
@@ -839,7 +837,9 @@ PHP_FUNCTION(libvirt_domain_lookup_by_uuid)
 	 res_domain= emalloc(sizeof(php_libvirt_domain));
 	 res_domain->domain = domain;
 
+#ifdef HAVE_GETCONNECT
 	 res_domain->conn=conn;
+#endif /* HAVE_GETCONNECT */
 
 
 	 ZEND_REGISTER_RESOURCE(return_value, res_domain, le_libvirt_domain);
@@ -864,7 +864,9 @@ PHP_FUNCTION(libvirt_domain_lookup_by_uuid_string)
 	 res_domain= emalloc(sizeof(php_libvirt_domain));
 	 res_domain->domain = domain;
 
+#ifdef HAVE_GETCONNECT
 	 res_domain->conn=conn;
+#endif /* HAVE_GETCONNECT */
 
 	 ZEND_REGISTER_RESOURCE(return_value, res_domain, le_libvirt_domain);
 }
@@ -885,7 +887,9 @@ PHP_FUNCTION(libvirt_domain_lookup_by_id)
 	 
 	 res_domain= emalloc(sizeof(php_libvirt_domain));
 	 res_domain->domain = domain;
+#ifdef HAVE_GETCONNECT
 	 res_domain->conn=conn;
+#endif /* HAVE_GETCONNECT */
 
 
 	 ZEND_REGISTER_RESOURCE(return_value, res_domain, le_libvirt_domain);
@@ -918,7 +922,9 @@ PHP_FUNCTION(libvirt_storagepool_lookup_by_name)
 
          res_pool = emalloc(sizeof(php_libvirt_storagepool));
          res_pool->pool = pool;
+#ifdef HAVE_GETCONNECT
 		 res_pool->conn = conn;
+#endif /* HAVE_GETCONNECT */
 
          ZEND_REGISTER_RESOURCE(return_value, res_pool, le_libvirt_storagepool);
 }
@@ -1093,7 +1099,9 @@ PHP_FUNCTION(libvirt_list_domains)
 		      res_domain->domain = domain;
 
 		      ALLOC_INIT_ZVAL(zdomain);
+#ifdef HAVE_GETCONNECT
 		      res_domain->conn=conn;
+#endif /* HAVE_GETCONNECT */
 		      
 		      ZEND_REGISTER_RESOURCE(zdomain, res_domain, le_libvirt_domain);
 		      add_next_index_zval(return_value,  zdomain);
@@ -1116,7 +1124,9 @@ PHP_FUNCTION(libvirt_list_domains)
 		      res_domain->domain = domain;
 
 		      ALLOC_INIT_ZVAL(zdomain);
+#ifdef HAVE_GETCONNECT
                       res_domain->conn=conn;
+#endif /* HAVE_GETCONNECT */
 		      
 		      ZEND_REGISTER_RESOURCE(zdomain, res_domain, le_libvirt_domain);
 		      add_next_index_zval(return_value,  zdomain);
@@ -1471,7 +1481,9 @@ php_libvirt_domain *res_domain=NULL;
 	 res_domain= emalloc(sizeof(php_libvirt_domain));
 	 res_domain->domain = domain;
      
+#ifdef HAVE_GETCONNECT
          res_domain->conn=conn;
+#endif /* HAVE_GETCONNECT */
 
 	ZEND_REGISTER_RESOURCE(return_value, res_domain, le_libvirt_domain);
 }
@@ -1495,7 +1507,9 @@ PHP_FUNCTION(libvirt_domain_create_xml)
 	 res_domain= emalloc(sizeof(php_libvirt_domain));
 	 res_domain->domain = domain;
 
+#ifdef HAVE_GETCONNECT
 	 res_domain->conn=conn;
+#endif /* HAVE_GETCONNECT */
 
 	ZEND_REGISTER_RESOURCE(return_value, res_domain, le_libvirt_domain);
 }
@@ -1633,6 +1647,7 @@ PHP_FUNCTION(libvirt_version)
 }
 
 
+#ifdef HAVE_GETCONNECT
 PHP_FUNCTION(libvirt_domain_get_connect)
 {
 
@@ -1646,7 +1661,7 @@ PHP_FUNCTION(libvirt_domain_get_connect)
 	 if (conn->conn == NULL) RETURN_FALSE;
          RETURN_RESOURCE(conn->resource_id);
 }
-
+#endif /* HAVE_GETCONNECT */
 
 
 PHP_FUNCTION(libvirt_domain_migrate_to_uri)
@@ -1714,7 +1729,9 @@ PHP_FUNCTION(libvirt_domain_migrate)
 	 
 	 res_domain= emalloc(sizeof(php_libvirt_domain));
 	 res_domain->domain = destdomain;
-         res_domain->conn=dconn;
+#ifdef HAVE_GETCONNECT
+     res_domain->conn=dconn;
+#endif /* HAVE_GETCONNECT */
 
  	 ZEND_REGISTER_RESOURCE(return_value, res_domain, le_libvirt_domain);
 	 	 
@@ -1813,7 +1830,9 @@ PHP_FUNCTION(libvirt_storagepool_lookup_by_uuid_string)
 
 	res_pool = emalloc (sizeof (php_libvirt_storagepool));
 	res_pool->pool = storage;
+#ifdef HAVE_GETCONNECT
 	res_pool->conn = conn;
+#endif /* HAVE_GETCONNECT */
 
 	ZEND_REGISTER_RESOURCE (return_value, res_pool, le_libvirt_storagepool);
 }
@@ -2117,7 +2136,9 @@ PHP_FUNCTION(libvirt_storagepool_define_xml)
 
 	res_pool = emalloc (sizeof (php_libvirt_storagepool));
 	res_pool->pool = pool;
+#ifdef HAVE_GETCONNECT
 	res_pool->conn = conn;
+#endif /* HAVE_GETCONNECT */
 
 	ZEND_REGISTER_RESOURCE (return_value, res_pool, le_libvirt_storagepool);
 }
@@ -2164,6 +2185,7 @@ PHP_FUNCTION(libvirt_storagepool_destroy)
 	RETURN_TRUE;
 }
 
+#ifdef HAVE_GET_CONNECT
 PHP_FUNCTION(libvirt_storagepool_get_connect)
 {
 	php_libvirt_connection *conn = NULL;
@@ -2180,6 +2202,7 @@ PHP_FUNCTION(libvirt_storagepool_get_connect)
 
 	RETURN_RESOURCE (conn->resource_id);
 }
+#endif /* HAVE_GETCONNECT */
 
 PHP_FUNCTION(libvirt_storagepool_is_active)
 {
@@ -2418,7 +2441,9 @@ PHP_FUNCTION(libvirt_network_define_xml)
 
 	res_network = emalloc (sizeof (php_libvirt_network));
 	res_network->network = network;
+#ifdef HAVE_GETCONNECT
 	res_network->conn = conn;
+#endif /* HAVE_GETCONNECT */
 
 	ZEND_REGISTER_RESOURCE (return_value, res_network, le_libvirt_network);
 }
@@ -2505,6 +2530,7 @@ PHP_FUNCTION(libvirt_network_get_bridge_name)
 	RETURN_STRING (val_out, 0);
 }
 
+#ifdef HAVE_GETCONNECT 
 PHP_FUNCTION(libvirt_network_get_connect)
 {
 	php_libvirt_network *network = NULL;
@@ -2521,6 +2547,7 @@ PHP_FUNCTION(libvirt_network_get_connect)
 	
 	RETURN_RESOURCE (conn->resource_id);
 }
+#endif /* HAVE_GETCONNECT */
 
 PHP_FUNCTION(libvirt_network_get_name)
 {
@@ -2610,7 +2637,9 @@ PHP_FUNCTION(libvirt_network_lookup_by_name)
 
 	res_network = emalloc (sizeof (php_libvirt_network));
 	res_network->network = network;
+#ifdef HAVE_GETCONNECT
 	res_network->conn = conn;
+#endif /* HAVE_GETCONNECT */
 
 	ZEND_REGISTER_RESOURCE (return_value, res_network, le_libvirt_network);
 }
@@ -2639,7 +2668,9 @@ PHP_FUNCTION(libvirt_network_lookup_by_uuid_string)
 
 	res_network = emalloc (sizeof (php_libvirt_network));
 	res_network->network = network;
+#ifdef HAVE_GETCONNECT
 	res_network->conn = conn;
+#endif /* HAVE_GETCONNECT */
 
 	ZEND_REGISTER_RESOURCE (return_value, res_network, le_libvirt_network);
 }
@@ -3025,7 +3056,9 @@ PHP_FUNCTION(libvirt_node_device_lookup_by_name)
 
 	res_device = emalloc (sizeof (php_libvirt_node_device));
 	res_device->device = device;
+#ifdef HAVE_GETCONNECT
 	res_device->conn = conn;
+#endif /* HAVE_GETCONNECT */
 
 	ZEND_REGISTER_RESOURCE (return_value, res_device, le_libvirt_host_device);
 }
@@ -3293,11 +3326,14 @@ PHP_FUNCTION(libvirt_interface_define_xml)
 	res_interface = emalloc (sizeof (php_libvirt_interface));
 
 	res_interface->interface = interface;
+#ifdef HAVE_GETCONNECT
 	res_interface->conn = conn;
+#endif /* HAVE_GETCONNECT */
 
 	ZEND_REGISTER_RESOURCE (return_value, res_interface, le_libvirt_interface);
 }
 
+#ifdef HAVE_GETCONNECT 
 PHP_FUNCTION(libvirt_interface_get_connect)
 {
 	php_libvirt_interface *interface = NULL;
@@ -3314,6 +3350,7 @@ PHP_FUNCTION(libvirt_interface_get_connect)
 	
 	RETURN_RESOURCE (conn->resource_id);
 }
+#endif /* HAVE_GETCONNECT */
 
 PHP_FUNCTION(libvirt_interface_get_mac_string)
 {
@@ -3389,7 +3426,9 @@ PHP_FUNCTION(libvirt_interface_lookup_by_mac_string)
 
 	res_interface = emalloc (sizeof (php_libvirt_interface));
 	res_interface->interface = interface;
+#ifdef HAVE_GETCONNECT
 	res_interface->conn = conn;
+#endif /* HAVE_GETCONNECT */
 
 	ZEND_REGISTER_RESOURCE (return_value, res_interface, le_libvirt_interface);
 }
@@ -3417,7 +3456,9 @@ PHP_FUNCTION(libvirt_interface_lookup_by_name)
 
 	res_interface = emalloc (sizeof (php_libvirt_interface));
 	res_interface->interface = interface;
+#ifdef HAVE_GETCONNECT
 	res_interface->conn = conn;
+#endif /* HAVE_GETCONNECT */
 
 	ZEND_REGISTER_RESOURCE (return_value, res_interface, le_libvirt_interface);
 }

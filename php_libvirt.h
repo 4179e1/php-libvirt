@@ -1,6 +1,10 @@
 #ifndef PHP_LIBVIRT_H
 #define PHP_LIBVIRT_H 1
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #ifdef ZTS
 #include "TSRM.h"
 #endif
@@ -29,12 +33,16 @@ typedef struct _php_libvirt_connection {
 
 typedef struct _php_libvirt_domain {
     virDomainPtr domain;
+#ifdef HAVE_GETCONNECT
     php_libvirt_connection* conn;
+#endif /* HAVE_GETCONNECT */
 } php_libvirt_domain;
 
 typedef struct _php_libvirt_storagepool {
     virStoragePoolPtr pool;
+#ifdef HAVE_GETCONNECT
     php_libvirt_connection* conn;
+#endif /* HAVE_GETCONNECT */
 } php_libvirt_storagepool;
 
 typedef struct _php_libvirt_volume {
@@ -43,17 +51,23 @@ typedef struct _php_libvirt_volume {
 
 typedef struct _php_libvirt_network {
 	virNetworkPtr network;
+#ifdef HAVE_GETCONNECT
 	php_libvirt_connection *conn;
+#endif /* HAVE_GETCONNECT */
 } php_libvirt_network;
 
 typedef struct _php_libivrt_node_device {
 	virNodeDevicePtr device;
+#ifdef HAVE_GETCONNECT
 	php_libvirt_connection *conn;
+#endif /* HAVE_GETCONNECT */
 } php_libvirt_node_device;
 
 typedef struct _php_libvirt_interface {
 	virInterfacePtr interface;
+#ifdef HAVE_GETCONNECT
 	php_libvirt_connection *conn;
+#endif /* HAVE_GETCONNECT */
 } php_libvirt_interface;
 
 typedef struct _php_libvirt_domain_snapshot {
@@ -133,7 +147,9 @@ PHP_FUNCTION(libvirt_domain_get_autostart);
 PHP_FUNCTION(libvirt_domain_set_autostart);
 PHP_FUNCTION(libvirt_domain_is_active);
 PHP_FUNCTION(libvirt_version);
+#ifdef HAVE_GETCONNECT
 PHP_FUNCTION(libvirt_domain_get_connect);
+#endif /* HAVE_GETCONNECT */
 PHP_FUNCTION(libvirt_domain_migrate);
 #if LIBVIR_VERSION_NUMBER>=7007
 PHP_FUNCTION(libvirt_domain_get_job_info);
@@ -154,7 +170,9 @@ PHP_FUNCTION(libvirt_storagepool_define_xml);
 PHP_FUNCTION(libvirt_storagepool_undefine);
 PHP_FUNCTION(libvirt_storagepool_create);
 PHP_FUNCTION(libvirt_storagepool_destroy);
+#ifdef HAVE_GETCONNECT
 PHP_FUNCTION(libvirt_storagepool_get_connect);
+#endif /* HAVE_GETCONNECT */
 PHP_FUNCTION(libvirt_storagepool_is_active);
 PHP_FUNCTION(libvirt_storagepool_get_volume_count);
 PHP_FUNCTION(libvirt_storagepool_refresh);
@@ -182,7 +200,9 @@ PHP_FUNCTION(libvirt_network_destroy);
 PHP_FUNCTION(libvirt_network_undefine);
 PHP_FUNCTION(libvirt_network_get_autostart);
 PHP_FUNCTION(libvirt_network_get_bridge_name);
+#ifdef HAVE_GETCONNECT
 PHP_FUNCTION(libvirt_network_get_connect);
+#endif /* HAVE_GETCONNECT */
 PHP_FUNCTION(libvirt_network_get_name);
 PHP_FUNCTION(libvirt_network_get_uuid_string);
 PHP_FUNCTION(libvirt_network_get_xml_desc);
@@ -212,7 +232,9 @@ PHP_FUNCTION(libvirt_get_active_interface_count);
 PHP_FUNCTION(libvirt_get_defined_interface_count);
 PHP_FUNCTION(libvirt_interface_create);
 PHP_FUNCTION(libvirt_interface_define_xml);
+#ifdef HAVE_GETCONNECT
 PHP_FUNCTION(libvirt_interface_get_connect);
+#endif /* HAVE_GETCONNECT */
 PHP_FUNCTION(libvirt_interface_get_mac_string);
 PHP_FUNCTION(libvirt_interface_get_name);
 PHP_FUNCTION(libvirt_interface_get_xml_desc);
