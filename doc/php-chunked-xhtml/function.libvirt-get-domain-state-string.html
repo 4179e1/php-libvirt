@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Return the string of a corresponding domain state number</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.libvirt-get-domain-count.html">libvirt_get_domain_count</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.libvirt-get-hostname.html">libvirt_get_hostname</a></div>
+ <div class="up"><a href="ref.libvirt.html">Libvirt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.libvirt-get-domain-state-string" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">libvirt_get_domain_state_string</h1>
+  <p class="verinfo">(php-libvirt 0.4)</p><p class="refpurpose"><span class="refname">libvirt_get_domain_state_string</span> &mdash; <span class="dc-title">Return the string of a corresponding domain state number </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b>libvirt_get_domain_state_string</b></span>
+    ( <span class="methodparam"><span class="type">integer</span> <tt class="parameter">$state</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+  Return the string of a corresponding domain state number 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">state</tt></i></span>
+     <dd>
+
+      <p class="para">
+      Domain state number, which is obtained from <span class="function"><b>libvirt_get_domain_get_info()</b></span>.
+      </p>
+     </dd>
+
+    </dt>
+
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+  Return one of the following:
+  <ul class="simplelist">
+   <li class="member"><b><tt>VIR_DOMAIN_NOSTATE</tt></b></li>
+   <li class="member"><b><tt>VIR_DOMAIN_RUNNING</tt></b></li>
+   <li class="member"><b><tt>VIR_DOMAIN_BLOCKED</tt></b></li>
+   <li class="member"><b><tt>VIR_DOMAIN_PAUSED</tt></b></li>
+   <li class="member"><b><tt>VIR_DOMAIN_SHUTDOWN</tt></b></li>
+   <li class="member"><b><tt>VIR_DOMAIN_SHUTOFF</tt></b></li>
+   <li class="member"><b><tt>VIR_DOAMIN_CRASHED</tt></b></li>
+   <li class="member">Err: Unknown State - if an invalid state number is given</li>
+  </ul>
+  </p>
+ </div>
+
+
+ <div class="refsect1 example">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <span class="function"><b>libvirt_get_domain_state_string()</b></span> example</b></p>
+    <div class="example-contents"><p>
+     This exmaple show the usage of the function.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?PHP<br /></span><span style="color: #FF8000">//&nbsp;omitted<br /></span><span style="color: #0000BB">$info&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">libvirt_domain_get_info&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$domain</span><span style="color: #007700">);<br />echo&nbsp;(</span><span style="color: #0000BB">libvirt_get_domain_state_string&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$info</span><span style="color: #007700">[</span><span style="color: #DD0000">'state'</span><span style="color: #007700">]);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+      </div>
+
+      <div class="example-contents"><p>The above example will output
+something similar to:</p></div>
+      <div class="example-contents screen">
+<div class="cdata"><pre>
+VIR_DOAMIN_RUNNING
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.libvirt-domain-get-info.html" class="function" rel="rdfs-seeAlso">libvirt_domain_get_info()</a> - Extract information about a domain</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.libvirt-get-domain-count.html">libvirt_get_domain_count</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.libvirt-get-hostname.html">libvirt_get_hostname</a></div>
+ <div class="up"><a href="ref.libvirt.html">Libvirt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Delete the snapshot</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.libvirt-domain-snapshot-current.html">libvirt_domain_snapshot_current</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.libvirt-domain-snapshot-get-xml-desc.html">libvirt_domain_snapshot_get_xml_desc</a></div>
+ <div class="up"><a href="ref.libvirt.html">Libvirt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.libvirt-domain-snapshot-delete" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">libvirt_domain_snapshot_delete</h1>
+  <p class="verinfo">(php-libvirt 0.4)</p><p class="refpurpose"><span class="refname">libvirt_domain_snapshot_delete</span> &mdash; <span class="dc-title">Delete the snapshot</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b>libvirt_domain_snapshot_delete</b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$snapshot</tt></span>
+   [, <span class="methodparam"><span class="type">integer</span> <tt class="parameter">$flags</tt><span class="initializer"> = 0</span></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+  Delete the snapshot. If @flags is 0, then just this snapshot is deleted, and changes from this snapshot are automatically merged into children snapshots. If flags is VIR_DOMAIN_SNAPSHOT_DELETE_CHILDREN, then this snapshot and any children snapshots are deleted.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">snapshot</tt></i></span>
+     <dd>
+
+      <p class="para">
+      The snapshot to delete. You can get snapshot resource using various functions(i.e. <span class="function"><a href="function.libvirt-list-domain-snapshots.html" class="function">libvirt_list_domain_snapshots()</a></span> or <span class="function"><a href="function.libvirt-domain-snapshot-lookup-by-name.html" class="function">libvirt_domain_snapshot_lookup_by_name()</a></span>) .
+      </p>
+     </dd>
+
+    </dt>
+
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flags</tt></i></span>
+     <dd>
+
+      <p class="para">
+	   Logical OR of any of these flags:
+       <ul class="simplelist">
+        <li class="member"><b><tt>VIR_DOMAIN_SNAPSHOT_DELETE_CHILDEREN</tt></b></li>
+	   </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+  Return <b><tt>TRUE</tt></b> on success and <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+	<li class="member"><span class="function"><a href="function.libvirt-list-domain-snapshots.html" class="function" rel="rdfs-seeAlso">libvirt_list_domain_snapshots()</a> - List all snapshot of the domain</span></li>
+    <li class="member"><span class="function"><a href="function.libvirt-domain-snapshot-lookup-by-name.html" class="function" rel="rdfs-seeAlso">libvirt_domain_snapshot_lookup_by_name()</a> - Try to lookup a domain snapshot based on its name.</span></li>
+    <li class="member"><span class="function"><a href="function.libvirt-domain-snapshot-count.html" class="function" rel="rdfs-seeAlso">libvirt_domain_snapshot_count()</a> - Provides the number of domain snapshots for this domain.</span></li>
+    <li class="member"><span class="function"><a href="function.libvirt-domain-snapshot-create-xml.html" class="function" rel="rdfs-seeAlso">libvirt_domain_snapshot_create_xml()</a> - Creates a new snapshot of a domain based on the snapshot xml contained in xmlDesc.</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.libvirt-domain-snapshot-current.html">libvirt_domain_snapshot_current</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.libvirt-domain-snapshot-get-xml-desc.html">libvirt_domain_snapshot_get_xml_desc</a></div>
+ <div class="up"><a href="ref.libvirt.html">Libvirt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

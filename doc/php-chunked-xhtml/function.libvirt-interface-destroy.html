@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>deactivate an interface (ie call &quot;ifdown&quot;)</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.libvirt-interface-define-xml.html">libvirt_interface_define_xml</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.libvirt-interface-get-connect.html">libvirt_interface_get_connect</a></div>
+ <div class="up"><a href="ref.libvirt.html">Libvirt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.libvirt-interface-destroy" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">libvirt_interface_destroy</h1>
+  <p class="verinfo">(php-libvirt 0.4)</p><p class="refpurpose"><span class="refname">libvirt_interface_destroy</span> &mdash; <span class="dc-title">deactivate an interface (ie call &quot;ifdown&quot;) </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b>libvirt_interface_destroy</b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$interface</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+  deactivate an interface (ie call &quot;ifdown&quot;)
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">interface</tt></i></span>
+     <dd>
+
+      <p class="para">
+	  Interface resource, you can get it using various functions (e.g. <span class="function"><a href="function.libvirt-list-interfaces.html" class="function">libvirt_list_interfaces()</a></span> or <span class="function"><a href="function.libvirt-interface-lookup-by-name.html" class="function">libvirt_interface_lookup_by_name()</a></span>).
+      </p>
+     </dd>
+
+    </dt>
+
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+  Return <b><tt>TRUE</tt></b> on success and <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.libvirt-list-interfaces.html" class="function" rel="rdfs-seeAlso">libvirt_list_interfaces()</a> - List all interfaces</span></li>
+    <li class="member"><span class="function"><b>libvirt_interface_create_xml()</b></span></li>
+    <li class="member"><span class="function"><a href="function.libvirt-interface-lookup-by-name.html" class="function" rel="rdfs-seeAlso">libvirt_interface_lookup_by_name()</a> - Try to lookup an interface on the given hypervisor based on its name.</span></li>
+    <li class="member"><span class="function"><a href="function.libvirt-interface-lookup-by-mac-string.html" class="function" rel="rdfs-seeAlso">libvirt_interface_lookup_by_mac_string()</a> - Try to lookup an interface on the given hypervisor based on its MAC.</span></li>
+    <li class="member"><span class="function"><a href="function.libvirt-interface-create.html" class="function" rel="rdfs-seeAlso">libvirt_interface_create()</a> - Activate an interface (ie call &quot;ifup&quot;)</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.libvirt-interface-define-xml.html">libvirt_interface_define_xml</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.libvirt-interface-get-connect.html">libvirt_interface_get_connect</a></div>
+ <div class="up"><a href="ref.libvirt.html">Libvirt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

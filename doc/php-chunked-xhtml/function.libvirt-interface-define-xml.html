@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Define an interface (or modify existing interface configuration)</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.libvirt-interface-create.html">libvirt_interface_create</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.libvirt-interface-destroy.html">libvirt_interface_destroy</a></div>
+ <div class="up"><a href="ref.libvirt.html">Libvirt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.libvirt-interface-define-xml" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">libvirt_interface_define_xml</h1>
+  <p class="verinfo">(php-libvirt 0.4)</p><p class="refpurpose"><span class="refname">libvirt_interface_define_xml</span> &mdash; <span class="dc-title">Define an interface (or modify existing interface configuration)</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b>libvirt_interface_define_xml</b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$connect</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$xml</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+  Define an interface (or modify existing interface configuration)
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connect</tt></i></span>
+     <dd>
+
+      <p class="para">
+	  Connection resource of hypervisor.
+      </p>
+     </dd>
+
+    </dt>
+
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">xml</tt></i></span>
+     <dd>
+
+      <p class="para">
+	  XML description of the interface.
+      </p>
+     </dd>
+
+    </dt>
+
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+  Return interface resource, or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.libvirt-connect.html" class="function" rel="rdfs-seeAlso">libvirt_connect()</a> - Get a connection to the Hypervisor</span></li>
+    <li class="member"><span class="function"><a href="function.libvirt-interface-undefine.html" class="function" rel="rdfs-seeAlso">libvirt_interface_undefine()</a> - Undefine an interface, ie remove it from the config.</span></li>
+    <li class="member"><span class="function"><a href="function.libvirt-interface-get-xml-desc.html" class="function" rel="rdfs-seeAlso">libvirt_interface_get_xml_desc()</a> - Provide an XML description of the interface.</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.libvirt-interface-create.html">libvirt_interface_create</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.libvirt-interface-destroy.html">libvirt_interface_destroy</a></div>
+ <div class="up"><a href="ref.libvirt.html">Libvirt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

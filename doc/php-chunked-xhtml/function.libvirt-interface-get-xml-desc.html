@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Provide an XML description of the interface.</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.libvirt-interface-get-name.html">libvirt_interface_get_name</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.libvirt-interface-is-active.html">libvirt_interface_is_active</a></div>
+ <div class="up"><a href="ref.libvirt.html">Libvirt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.libvirt-interface-get-xml-desc" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">libvirt_interface_get_xml_desc</h1>
+  <p class="verinfo">(php-libvirt 0.4)</p><p class="refpurpose"><span class="refname">libvirt_interface_get_xml_desc</span> &mdash; <span class="dc-title">Provide an XML description of the interface.</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b>libvirt_interface_get_xml_desc</b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$interface</tt></span>
+   [, <span class="methodparam"><span class="type">integer</span> <tt class="parameter">$flags</tt><span class="initializer"> = 0</span></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Provide an XML description of the interface.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">interface</tt></i></span>
+     <dd>
+
+      <p class="para">
+	  Interface resource, you can get it using various functions (e.g. <span class="function"><a href="function.libvirt-list-interfaces.html" class="function">libvirt_list_interfaces()</a></span> or <span class="function"><a href="function.libvirt-interface-lookup-by-name.html" class="function">libvirt_interface_lookup_by_name()</a></span>).
+      </p>
+     </dd>
+
+    </dt>
+
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flags</tt></i></span>
+     <dd>
+
+      <p class="para">
+	  Logic OR of any of these flags:
+	   <ul class="simplelist">
+	   	<li class="member"><b><tt>VIR_INTERFACE_XML_INACTIVE</tt></b></li>
+	   </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+  Return the xml description of the interface, or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.libvirt-interface-define-xml.html" class="function" rel="rdfs-seeAlso">libvirt_interface_define_xml()</a> - Define an interface (or modify existing interface configuration)</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.libvirt-interface-get-name.html">libvirt_interface_get_name</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.libvirt-interface-is-active.html">libvirt_interface_is_active</a></div>
+ <div class="up"><a href="ref.libvirt.html">Libvirt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

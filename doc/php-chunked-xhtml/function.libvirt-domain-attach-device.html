@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Attach a XML descripted device to domain</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.libvirt-connect.html">libvirt_connect</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.libvirt-domain-block-stats.html">libvirt_domain_block_stats</a></div>
+ <div class="up"><a href="ref.libvirt.html">Libvirt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.libvirt-domain-attach-device" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">libvirt_domain_attach_device</h1>
+  <p class="verinfo">(php-libvirt 0.4)</p><p class="refpurpose"><span class="refname">libvirt_domain_attach_device</span> &mdash; <span class="dc-title">Attach a XML descripted device to domain</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b>libvirt_domain_attach_device</b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$domain</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$xml</tt></span>
+   [, <span class="methodparam"><span class="type">integer</span> <tt class="parameter">$flags</tt><span class="initializer"> = 0</span></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+  Attach a virtual device to a domain, using the flags parameter to control how the device is attached. VIR_DOMAIN_DEVICE_MODIFY_CURRENT specifies that the device allocation is made based on current domain state. VIR_DOMAIN_DEVICE_MODIFY_LIVE specifies that the device shall be allocated to the active domain instance only and is not added to the persisted domain configuration. VIR_DOMAIN_DEVICE_MODIFY_CONFIG specifies that the device shall be allocated to the persisted domain configuration only. Note that the target hypervisor must return an error if unable to satisfy flags. E.g. the hypervisor driver will return failure if LIVE is specified but it only supports modifying the persisted device allocation. For compatibility, this method can also be used to change the media in an existing CDROM/Floppy device, however, applications are recommended to use the virDomainUpdateDeviceFlag method instead.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">domain</tt></i></span>
+     <dd>
+
+      <p class="para">
+      Domain to attach device
+      </p>
+     </dd>
+
+    </dt>
+
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">xml</tt></i></span>
+     <dd>
+
+      <p class="para">
+      XML description of the device
+      </p>
+     </dd>
+
+    </dt>
+
+	
+	<dt>
+
+     <span class="term"><i><tt class="parameter">flags</tt></i></span>
+     <dd>
+
+      <p class="para">
+	   Logical OR of any of these flags:
+       <ul class="simplelist">
+        <li class="member"><b><tt>VIR_DOMAIN_DEVICE_MODIFY_CURRENT</tt></b> - Modify device allocation based on current domain state</li>
+        <li class="member"><b><tt>VIR_DOMAIN_DEVICE_MODIFY_LIVE</tt></b> - Modify live device allocation</li>
+        <li class="member"><b><tt>VIR_DOMAIN_DEVICE_MODIFY_CONFIG</tt></b> - Modify persisted device allocation</li>
+        <li class="member"><b><tt>VIR_DOMAIN_DEVICE_MODIFY_FORCE</tt></b> - Forcibly modify device (ex. force eject a cdrom)</li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+  <b><tt>TRUE</tt></b> on success and <b><tt>FALSE</tt></b> on failure
+  </p>
+ </div>
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.libvirt-connect.html">libvirt_connect</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.libvirt-domain-block-stats.html">libvirt_domain_block_stats</a></div>
+ <div class="up"><a href="ref.libvirt.html">Libvirt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

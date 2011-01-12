@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Return the version of libvirt used by the daemon running on the connected host.</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.libvirt-get-last-error.html">libvirt_get_last_error</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.libvirt-get-max-vcpus.html">libvirt_get_max_vcpus</a></div>
+ <div class="up"><a href="ref.libvirt.html">Libvirt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.libvirt-get-lib-version" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">libvirt_get_lib_version</h1>
+  <p class="verinfo">(php-libvirt 0.4)</p><p class="refpurpose"><span class="refname">libvirt_get_lib_version</span> &mdash; <span class="dc-title">Return the version of libvirt used by the daemon running on the connected host.</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">integer</span> <span class="methodname"><b>libvirt_get_lib_version</b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$connect</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+  Return the version of libvirt used by the daemon running on the connected host.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connect</tt></i></span>
+     <dd>
+
+      <p class="para">
+      Connection resource of hypervisor, obtained from <span class="function"><a href="function.libvirt-connect.html" class="function">libvirt_connect()</a></span>.
+      </p>
+     </dd>
+
+    </dt>
+
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+  Return <b><tt>FALSE</tt></b> on failure and version of the daemon that connecting the hypervisor on success.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.libvirt-connect.html" class="function" rel="rdfs-seeAlso">libvirt_connect()</a> - Get a connection to the Hypervisor</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.libvirt-get-last-error.html">libvirt_get_last_error</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.libvirt-get-max-vcpus.html">libvirt_get_max_vcpus</a></div>
+ <div class="up"><a href="ref.libvirt.html">Libvirt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>
