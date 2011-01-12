@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- $Revision: 1.28 $ -->
 
-<refentry xml:id="function.libvirt-list-active-domains" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+<refentry xml:id="function.libvirt-list-inactive-domains" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
  <refnamediv>
-  <refname>libvirt_list_active_domains</refname>
-  <refpurpose>Get active domain resources</refpurpose>
+  <refname>libvirt_list_inactive_domains</refname>
+  <refpurpose>Get inactive domain resources</refpurpose>
  </refnamediv>
 
  <refsect1 role="description">
   &reftitle.description;
   <methodsynopsis>
-   <type>array</type><methodname>libvirt_list_active_domains</methodname>
+   <type>array</type><methodname>libvirt_list_inactive_domains</methodname>
    <methodparam ><type>resource</type><parameter>connection</parameter></methodparam>
   </methodsynopsis>
   <para>
-   Get the list of active domains.
+   Get the resources of defined but inactive domains.
   </para>
  </refsect1>
 
@@ -33,20 +33,22 @@
    </variablelist>
   </para>
  </refsect1>
+
  <refsect1 role="returnvalues">
   &reftitle.returnvalues;
   <!-- See also &return.success; -->
   <para>
-  Return &false; on fialure and an array of domain resources for all domains running on the hypervisor.
+     Return &false; on fialure and an array of domain resources for all inactive domains on the hypervisor.
   </para>
  </refsect1>
 
 
- <refsect1 role="seealso">
+ 
+<refsect1 role="seealso">
   &reftitle.seealso;
   <para>
    <simplelist>
-    <member><function>libvirt_list_inactive_domains</function></member>
+    <member><function>libvirt_list_active_domains</function></member>
     <member><function>libvirt_list_domains</function></member>
    </simplelist>
   </para>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-interface-get-mac-string" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_interface_get_mac_string</refname>
+  <refpurpose>Get the MAC for an interface as string.</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>string</type><methodname>libvirt_interface_get_mac_string</methodname>
+   <methodparam><type>resource</type><parameter>interface</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  Get the MAC for an interface as string. For more information about MAC see RFC4122.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>interface</parameter></term>
+     <listitem>
+      <para>
+	  Interface resource, you can get it using various functions (e.g. <function>libvirt_list_interfaces</function> or <function>libvirt_interface_lookup_by_name</function>).
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return mac string of the interface, or &false; on failure.
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt-interface-lookup-by-mac-string</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

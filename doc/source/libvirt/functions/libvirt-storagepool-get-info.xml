@@ -11,7 +11,7 @@
   &reftitle.description;
   <methodsynopsis>
    <type>array</type><methodname>libvirt_storagepool_get_info</methodname>
-   <methodparam ><type>resource</type><parameter>connection</parameter></methodparam>
+   <methodparam ><type>resource</type><parameter>pool</parameter></methodparam>
   </methodsynopsis>
   <para>
    This function returns array containing storagepool information 
@@ -28,10 +28,10 @@ This function returns values that may be bigger than 32bit integer limit. Please
  <para>
    <variablelist>
     <varlistentry>
-     <term><parameter>connection</parameter></term>
+     <term><parameter>pool</parameter></term>
      <listitem>
       <para>
-       Connection resource of storagepool 
+       Storagepool resource, you can get it using various functions (e.g. <function>libvirt_storagepool_define_xml</function>, <function>libvirt_storagepool_lookup_by_name</function>).
       </para>
      </listitem>
     </varlistentry>

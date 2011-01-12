@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-node-device-dettach" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_node_device_dettach</refname>
+  <refpurpose></refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>bool</type><methodname>libvirt_node_device_dettach</methodname>
+   <methodparam><type>resource</type><parameter>device</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  Dettach the node device from the node itself so that it may be assigned to a guest domain. Depending on the hypervisor, this may involve operations such as unbinding any device drivers from the device, binding the device to a dummy device driver and resetting the device. If the device is currently in use by the node, this method may fail. Once the device is not assigned to any guest, it may be re-attached to the node using the <function>libvirt_node_device_dettach</function> method.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>device</parameter></term>
+     <listitem>
+      <para>
+	  Node device resource, you can get it using <function>libvirt_list_node_devices</function> or <function>libvirt_node_device_lookup_by_name</function>.
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return &true; on success and &false; on failure.
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_node_device_lookup_by_name</function></member>
+    <member><function>libvirt_list_node_devices</function></member>
+    <member><function>libvirt_node_device_reattach</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

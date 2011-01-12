@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-node-get-free-memory" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_node_get_free_memory</refname>
+  <refpurpose>provides the free memory available on the Node.</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>integer</type><methodname>libvirt_node_get_free_memory</methodname>
+   <methodparam><type>resource</type><parameter>connect</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  provides the free memory available on the Node. Note: most libvirt APIs provide memory sizes in kilobytes, but in this function the returned value is in bytes. Divide by 1024 as necessary.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>connect</parameter></term>
+     <listitem>
+      <para>
+	  Connection resource of hypervisor.
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+	Return the free memory available on the Node, or &false; on failure.
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_connect</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

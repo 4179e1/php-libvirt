@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-domain-has-current-snapshot" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_domain_has_current_snapshot</refname>
+  <refpurpose>Determine if the domain has a current snapshot.</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>integer</type><methodname>libvirt_domain_has_current_snapshot</methodname>
+   <methodparam><type>resource</type><parameter>domain</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  Determine if the domain has a current snapshot.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>domain</parameter></term>
+     <listitem>
+      <para>
+      Whether this domain has a current snapshot. You can get domain resource using various functions (i.e. <function>libvirt_domain_lookup_by_uuid</function> or <function>libvirt_list_domains</function>). 
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  1 if such snapshot exists, 0 if it doesn't, -1 on error. 
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_list_domains</function></member>
+    <member><function>libvirt_domain_lookup_by_uuid</function></member>
+    <member><function>libvirt_domain_lookup_by_uuid_string</function></member>
+    <member><function>libvirt_domain_lookup_by_id</function></member>
+    <member><function>libvirt_domain_lookup_by_name</function></member>
+    <member><function>libvirt_domain_create_xml</function></member>
+    <member><function>libvirt_domain_define_xml</function></member>
+    <member><function>libvirt_list_domain_snapshots</function></member>
+    <member><function>libvirt_domain_snapshot_lookup_by_name</function></member>
+    <member><function>libvirt_domain_snapshot_count</function></member>
+    <member><function>libvirt_domain_snapshot_current</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

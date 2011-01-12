@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-node-device-get-xml-desc" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_node_device_get_xml_desc</refname>
+  <refpurpose>Fetch an XML document describing all aspects of the device.</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>string</type><methodname>libvirt_node_device_get_xml_desc</methodname>
+   <methodparam><type>resource</type><parameter>device</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+Fetch an XML document describing all aspects of the device.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>device</parameter></term>
+     <listitem>
+      <para>
+	  Node device resource, you can get it using <function>libvirt_list_node_devices</function> or <function>libvirt_node_device_lookup_by_name</function>.
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return the XML description of the device, or &false; on failure.
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_node_device_lookup_by_name</function></member>
+    <member><function>libvirt_list_node_devices</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

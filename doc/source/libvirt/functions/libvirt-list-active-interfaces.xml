@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-list-active-interfaces" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_list_active_interfaces</refname>
+  <refpurpose>List active interfaces</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>array</type><methodname>libvirt_list_active_interfaces</methodname>
+   <methodparam><type>resource</type><parameter>connect</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  List active interfaces.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>connect</parameter></term>
+     <listitem>
+      <para>
+	  Connection resource of hypervisor.
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return an array contains the name of active interfaces, or &false; on failure.
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_connect</function></member>
+    <member><function>libvirt_list_interfaces</function></member>
+    <member><function>libvirt_list_inactive_interfaces</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

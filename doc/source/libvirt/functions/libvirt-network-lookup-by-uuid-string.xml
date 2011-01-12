@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-network-lookup-by-uuid-string" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_network_lookup_by_uuid_string</refname>
+  <refpurpose>Try to look up a network by its UUID (textual)</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>resource</type><methodname>libvirt_network_lookup_by_uuid_string</methodname>
+   <methodparam><type>resource</type><parameter>connect</parameter></methodparam>
+   <methodparam><type>string</type><parameter>uuid_string</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  Try to look up a network by its UUID (textual)
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>connect</parameter></term>
+     <listitem>
+      <para>
+	  Connection resource of hypervisor.
+      </para>
+     </listitem>
+    </varlistentry>
+
+    <varlistentry>
+     <term><parameter>uuid_string</parameter></term>
+     <listitem>
+      <para>
+	  the string UUID for the network
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return the network resource, or &false; on failure.
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_lookup_by_name</function></member>
+    <member><function>libvirt_lookup_by_uuid_string</function></member>
+    <member><function>libvirt_network_define_xml</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

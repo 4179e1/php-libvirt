@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-list-domain-snapshots" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_list_domain_snapshots</refname>
+  <refpurpose>List all snapshot of the domain</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>array</type><methodname>libvirt_list_domain_snapshots</methodname>
+   <methodparam><type>resource</type><parameter>domain</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  List all snapshot of the domain, snapshot names is returned as an array. 
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>domain</parameter></term>
+     <listitem>
+      <para>
+       List all snapshots of the domain . You can get domain resource using various functions (i.e. <function>libvirt_domain_lookup_by_uuid</function> or <function>libvirt_list_domains</function>). 
+	  </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return &false; on failure and an array contain snapshot names on success;
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_list_domains</function></member>
+    <member><function>libvirt_domain_lookup_by_uuid</function></member>
+    <member><function>libvirt_domain_lookup_by_uuid_string</function></member>
+    <member><function>libvirt_domain_lookup_by_id</function></member>
+    <member><function>libvirt_domain_lookup_by_name</function></member>
+    <member><function>libvirt_domain_has_current_snapshot</function></member>
+    <member><function>libvirt_domain_snapshot_lookup_by_name</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

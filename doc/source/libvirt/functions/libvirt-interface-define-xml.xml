@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-interface-define-xml" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_interface_define_xml</refname>
+  <refpurpose>Define an interface (or modify existing interface configuration)</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>bool</type><methodname>libvirt_interface_define_xml</methodname>
+   <methodparam><type>resource</type><parameter>connect</parameter></methodparam>
+   <methodparam><type>string</type><parameter>xml</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  Define an interface (or modify existing interface configuration)
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>connect</parameter></term>
+     <listitem>
+      <para>
+	  Connection resource of hypervisor.
+      </para>
+     </listitem>
+    </varlistentry>
+
+    <varlistentry>
+     <term><parameter>xml</parameter></term>
+     <listitem>
+      <para>
+	  XML description of the interface.
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return interface resource, or &false; on failure.
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_connect</function></member>
+    <member><function>libvirt_interface_undefine</function></member>
+    <member><function>libvirt_interface_get_xml_desc</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-list-ininactive-storagepools" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_list_ininactive_storagepools</refname>
+  <refpurpose>List inactived storagepools</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>array</type><methodname>libvirt_list_ininactive_storagepools</methodname>
+   <methodparam><type>interger</type><parameter>connect</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  This function return an array of inactived storagepool names for the connection resource.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>%PARAM_NAME</parameter></term>
+     <listitem>
+      <para>
+      Connection resource of hypervisor;
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return &false; on failure and an array of inactived storagepool names on success
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_list_storagepools</function></member>
+    <member><function>libvirt_list_active_storagepools</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

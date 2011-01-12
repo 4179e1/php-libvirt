@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-interface-is-active" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_interface_is_active</refname>
+  <refpurpose>Determine if the interface is currently running</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>integer</type><methodname>libvirt_interface_is_active</methodname>
+   <methodparam><type>resource</type><parameter>interface</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+   Determine if the interface is currently running
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>interface</parameter></term>
+     <listitem>
+      <para>
+	  Interface resource, you can get it using various functions (e.g. <function>libvirt_list_interfaces</function> or <function>libvirt_interface_lookup_by_name</function>).
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return 1 if interface is running, 0 if inactive, and -1 on failure.
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_list_interfaces</function></member>
+    <member><function>libvirt_interface_lookup_by_name</function></member>
+    <member><function>libvirt_interface_lookup_by_mac_string</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

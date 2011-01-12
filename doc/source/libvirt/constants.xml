@@ -336,6 +336,73 @@
      </simpara>
     </listitem>
    </varlistentry>
+
+   <varlistentry>
+    <term>
+     <constant>VIR_DOMAIN_DEVICE_MODIFY_CURRENT</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+
+   <varlistentry>
+    <term>
+     <constant>VIR_DOMAIN_DEVICE_MODIFY_LIVE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+ 
+   <varlistentry>
+    <term>
+     <constant>VIR_DOMAIN_DEVICE_MODIFY_CONFIG</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+ 
+   <varlistentry>
+    <term>
+     <constant>VIR_DOMAIN_DEVICE_MODIFY_FORCE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+
+   <varlistentry>
+    <term>
+     <constant>VIR_DOMAIN_SNAPSHOT_DELETE_CHILDREN</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+
+   <varlistentry>
+    <term>
+     <constant>VIR_INTERFACE_XML_INACTIVE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+
   </variablelist>
  </para>
 </appendix>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-get-storagepool-state-string" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_get_storagepool_state_string</refname>
+  <refpurpose>Return the string of a corresponding storagepool state number</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>string</type><methodname>libvirt_get_storagepool_state_string</methodname>
+   <methodparam><type>integer</type><parameter>state</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  Return the string of a corresponding storagepool state number
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>state</parameter></term>
+     <listitem>
+      <para>
+      Storage pool state number, which is obtained from <function>libivrt_storagepool_get_infof</function>.
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  One of the following:
+  <simplelist>
+   <member><constant>VIR_STORAGE_POOL_INACTIVE</constant></member>
+   <member><constant>VIR_STORAGE_POOL_BUILDING</constant></member>
+   <member><constant>VIR_STORAGE_POOL_RUNNING</constant></member>
+   <member><constant>VIR_STORAGE_POOL_DEGRADED</constant></member>
+   <member><constant>VIR_STORAGE_POOL_INACCESSIBLE</constant></member>
+   <member>Err: Unknown State - If an invalid state is given</member>
+  </simplelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="example">
+  &reftitle.examples;
+  <para>
+   <example>
+    <title><function>libvirt_list_active_storagepools</function> example</title>
+    <para>
+     This example show the usage of the function.
+    </para>
+    <programlisting role="php">
+<![CDATA[
+<?PHP
+$pool = libvirt_storage_pool_lookup_by_name ($conn, "default");
+$info = libvirt_storage_pool_get_info ($pool);
+echo (libvirt_get_storagepool_state_string ($info['state']);
+?>
+]]>
+      </programlisting>
+      &example.outputs.similar;
+      <screen>
+<![CDATA[
+VIR_STORAGE_POOL_INACTIVE
+]]>
+    </screen>
+   </example>
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_storagepool_get_info</function></member>
+    <member><function>libvirt_list_storagepools</function></member>
+    <member><function>libvirt_storagepools_lookup_by_name</function></member>
+    <member><function>libvirt_storagepools_lookup_by_uuid</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

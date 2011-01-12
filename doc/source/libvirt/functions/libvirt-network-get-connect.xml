@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-network-get-connect" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_network_get_connect</refname>
+  <refpurpose>Returns connection resource for a network</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>resource</type><methodname>libvirt_network_get_connect</methodname>
+   <methodparam><type>resource</type><parameter>network</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+   Returns the connection resource for a network.
+  </para>
+  <note><title>Notice</title>
+<para>.
+You should not rely on this function. It is better to keep your own reference of the connections and networks.
+</para>
+</note>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>network</parameter></term>
+     <listitem>
+      <para>
+       Network resource, You can get it using various functions (e.g. <function>libvirt_network_define_xml</function> or <function>libvirt_network_lookup_by_name</function>).
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return the connection resource of the network, or &false; on failue.
+  </para>
+ </refsect1>
+
+ <refsect1 role="example">
+  &reftitle.examples;
+  <para>
+   <example>
+    <title><function>libvirt_network_get_connect</function> example</title>
+    <para>
+     %EXAMPLE_DESCRIPTION
+    </para>
+    <programlisting role="php">
+<![CDATA[
+%EXAMPLE_BODY
+]]>
+      </programlisting>
+      &example.outputs.similar;
+      <screen>
+<![CDATA[
+#EXAMPLE_RESULT
+]]>
+    </screen>
+   </example>
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_lookup_by_name</function></member>
+    <member><function>libvirt_lookup_by_uuid_string</function></member>
+    <member><function>libvirt_network_define_xml</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-interface-lookup-by-name" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_interface_lookup_by_name</refname>
+  <refpurpose>Try to lookup an interface on the given hypervisor based on its name.</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>resource</type><methodname>libvirt_interface_lookup_by_name</methodname>
+   <methodparam><type>resource</type><parameter>connect</parameter></methodparam>
+   <methodparam><type>name</type><parameter>name</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  Try to lookup an interface on the given hypervisor based on its name.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>connect</parameter></term>
+     <listitem>
+      <para>
+	  Connection resouce of hypervisor.
+      </para>
+     </listitem>
+    </varlistentry>
+
+    <varlistentry>
+     <term><parameter>name</parameter></term>
+     <listitem>
+      <para>
+	  Name of the interface.
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return interface resource, or &false; on failure.
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_interface_get_name</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

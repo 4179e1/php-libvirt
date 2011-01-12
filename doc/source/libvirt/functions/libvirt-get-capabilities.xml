@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-get-capabilities" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_get_capabilities</refname>
+  <refpurpose>Provides capabilities of the hypervisor / driver.</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>string</type><methodname>libvirt_get_capabilities</methodname>
+   <methodparam><type>resource</type><parameter>connect</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  Provides capabilities of the hypervisor / driver.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>connect</parameter></term>
+     <listitem>
+      <para>
+      Connection Resource of hypervisor, obtained from <function>libvirt_connect</function>.
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return &false; on failure and an XML defining the capabilities. For more details, see: <link xlink:href="http://libvirt.org/formatcaps.html">http://libvirt.org/formatcaps.html</link>
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_connect</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

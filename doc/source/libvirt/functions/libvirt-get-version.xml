@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-get-version" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_get_version</refname>
+  <refpurpose>Get the version level of the Hypervisor running.</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>integer</type><methodname>libvirt_get_version</methodname>
+   <methodparam><type>resource</type><parameter>connect</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  Get the version level of the Hypervisor running. This may work only with hypervisor call, i.e. with privileged access to the hypervisor, not with a Read-Only connection.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>connect</parameter></term>
+     <listitem>
+      <para>
+      Get the version level of the Hypervisor running. This may work only with hypervisor call, i.e. with privileged access to the hypervisor, not with a Read-Only connection.
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return &false; on failure and version of the connected hypervisor on success.
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_connect</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

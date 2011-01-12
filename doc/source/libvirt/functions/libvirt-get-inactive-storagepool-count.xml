@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-get-inactive-storagepool-count" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_get_inactive_storagepool_count</refname>
+  <refpurpose>Get the number of inactived storagepools</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>integer</type><methodname>libvirt_get_inactive_storagepool_count</methodname>
+   <methodparam><type>resource</type><parameter>connect</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  Provides the number of inactive storagepools
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>connect</parameter></term>
+     <listitem>
+      <para>
+      Connection resource of hypervisor.
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return &false; on failure and the number of inactived storagepools on success;
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_connect</function></member>
+    <member><function>libvirt_get_active_storagepool_count</function></member>
+    <member><function>libvirt_get_storagepool_count</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

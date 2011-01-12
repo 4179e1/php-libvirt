@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-domain-snapshot-get-xml-desc" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_domain_snapshot_get_xml_desc</refname>
+  <refpurpose>Provide an XML description of the domain snapshot.</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>string</type><methodname>libvirt_domain_snapshot_get_xml_desc</methodname>
+   <methodparam><type>resource</type><parameter>snapshot</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  Provide an XML description of the domain snapshot.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>snapshot</parameter></term>
+     <listitem>
+      <para>
+      The snapshot to dump. You can get snapshot resource using various functions(i.e. <function>libvirt_list_domain_snapshots</function> or <function>libvirt_domain_snapshot_lookup_by_name</function>) .
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return &false; on failure and XML Description of the snapshot. For more details see <link xlink:href="http://www.libvirt.org/formatsnapshot.html">http://www.libvirt.org/formatsnapshot.html</link>.
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_list_domain_snapshots</function></member>
+    <member><function>libvirt_domain_snapshot_lookup_by_name</function></member>
+    <member><function>libvirt_domain_snapshot_count</function></member>
+    <member><function>libvirt_domain_snapshot_create_xml</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

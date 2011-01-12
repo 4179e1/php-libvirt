@@ -39,7 +39,7 @@ static function_entry libvirt_functions[] = {
 	 PHP_FE(libvirt_get_lib_version, NULL)
 	 PHP_FE(libvirt_get_uri, NULL)
      PHP_FE(libvirt_get_active_domain_count, NULL)
-     PHP_FE(libvirt_get_defined_domain_count, NULL)
+     PHP_FE(libvirt_get_inactive_domain_count, NULL)
      PHP_FE(libvirt_get_domain_count, NULL)
 	 PHP_FE(libvirt_get_domain_state_string, NULL)
      PHP_FE(libvirt_domain_lookup_by_name, NULL)
@@ -51,9 +51,9 @@ static function_entry libvirt_functions[] = {
      PHP_FE(libvirt_list_domains, NULL)
 	 PHP_FE(libvirt_list_domain_names, NULL)
 	 PHP_FE(libvirt_list_active_domain_names, NULL)
-	 PHP_FE(libvirt_list_defined_domain_names, NULL)
+	 PHP_FE(libvirt_list_inactive_domain_names, NULL)
      PHP_FE(libvirt_list_active_domains, NULL)
-     PHP_FE(libvirt_list_defined_domains, NULL)
+     PHP_FE(libvirt_list_inactive_domains, NULL)
      PHP_FE(libvirt_domain_get_id, NULL)
      PHP_FE(libvirt_domain_lookup_by_id, NULL)
      PHP_FE(libvirt_domain_lookup_by_uuid, NULL)
@@ -87,13 +87,13 @@ static function_entry libvirt_functions[] = {
 	 PHP_FE(libvirt_domain_is_active, NULL)
      PHP_FE(libvirt_list_storagepools,NULL)
 	 PHP_FE(libvirt_list_active_storagepools, NULL)
-	 PHP_FE(libvirt_list_defined_storagepools, NULL)
+	 PHP_FE(libvirt_list_inactive_storagepools, NULL)
 	 PHP_FE(libvirt_get_storagepool_state_string, NULL)
 	 PHP_FE(libvirt_storagepool_get_name, NULL)
      PHP_FE(libvirt_storagepool_lookup_by_name,NULL)
      PHP_FE(libvirt_storagepool_list_volumes,NULL)
 	 PHP_FE(libvirt_list_active_networks, NULL)
-	 PHP_FE(libvirt_list_defined_networks, NULL)
+	 PHP_FE(libvirt_list_inactive_networks, NULL)
      PHP_FE(libvirt_storagepool_get_info,NULL)
 	 PHP_FE(libvirt_storagepool_get_uuid_string, NULL)
 	 PHP_FE(libvirt_storagepool_lookup_by_uuid_string, NULL)
@@ -112,7 +112,7 @@ static function_entry libvirt_functions[] = {
 	 PHP_FE(libvirt_storagepool_get_autostart, NULL)
 	 PHP_FE(libvirt_get_storagepool_count, NULL)
 	 PHP_FE(libvirt_get_active_storagepool_count, NULL)
-	 PHP_FE(libvirt_get_defined_storagepool_count, NULL)
+	 PHP_FE(libvirt_get_inactive_storagepool_count, NULL)
      PHP_FE(libvirt_storagevolume_lookup_by_name,NULL)
      PHP_FE(libvirt_storagevolume_get_info,NULL)
      PHP_FE(libvirt_storagevolume_get_xml_desc,NULL)
@@ -123,7 +123,7 @@ static function_entry libvirt_functions[] = {
 	 PHP_FE(libvirt_list_networks, NULL)
 	 PHP_FE(libvirt_get_network_count, NULL)
 	 PHP_FE(libvirt_get_active_network_count, NULL)
-	 PHP_FE(libvirt_get_defined_network_count, NULL)
+	 PHP_FE(libvirt_get_inactive_network_count, NULL)
 	 PHP_FE(libvirt_network_define_xml, NULL)
 	 PHP_FE(libvirt_network_create, NULL)
 	 PHP_FE(libvirt_network_destroy, NULL)
@@ -151,15 +151,16 @@ static function_entry libvirt_functions[] = {
 	 PHP_FE(libvirt_node_device_num_of_caps, NULL)
 	 PHP_FE(libvirt_node_device_reattach, NULL)
 	 PHP_FE(libvirt_node_device_reset, NULL)
-	 PHP_FE(libvirt_list_node_device, NULL)
+	 PHP_FE(libvirt_list_node_devices, NULL)
 	 PHP_FE(libvirt_get_node_device_count, NULL)
 	 PHP_FE(libvirt_list_interfaces, NULL)
 	 PHP_FE(libvirt_list_active_interfaces, NULL)
-	 PHP_FE(libvirt_list_defined_interfaces, NULL)
+	 PHP_FE(libvirt_list_inactive_interfaces, NULL)
 	 PHP_FE(libvirt_get_interface_count, NULL)
 	 PHP_FE(libvirt_get_active_interface_count, NULL)
-	 PHP_FE(libvirt_get_defined_interface_count, NULL)
+	 PHP_FE(libvirt_get_inactive_interface_count, NULL)
 	 PHP_FE(libvirt_interface_create, NULL)
+	 PHP_FE(libvirt_interface_destroy, NULL)
 	 PHP_FE(libvirt_interface_define_xml, NULL)
 #ifdef HAVE_GETCONNECT
 	 PHP_FE(libvirt_interface_get_connect, NULL)
@@ -434,7 +435,8 @@ PHP_MINIT_FUNCTION(libvirt)
 	REGISTER_LONG_CONSTANT("VIR_DOMAIN_DEVICE_MODIFY_CONFIG", 2, CONST_CS | CONST_PERSISTENT);	//Modify persisted device allocation
 	REGISTER_LONG_CONSTANT("VIR_DOMAIN_DEVICE_MODIFY_FORCE", 4, CONST_CS | CONST_PERSISTENT);	//Forcibly modify device (ex. force eject a cdrom)
 
-	REGISTER_LONG_CONSTANT("VIR_DOMAIN_SNAPSHOT_DELETE_CHILEREN", 1, CONST_CS | CONST_PERSISTENT);
+	REGISTER_LONG_CONSTANT("VIR_DOMAIN_SNAPSHOT_DELETE_CHILDEREN", 1, CONST_CS | CONST_PERSISTENT);
+	REGISTER_LONG_CONSTANT("VIR_INTERFACE_XML_INACTIVE", 1, CONST_CS | CONST_PERSISTENT);
 
     
     REGISTER_INI_ENTRIES();
@@ -760,7 +762,7 @@ PHP_FUNCTION(libvirt_get_active_domain_count)
 	 RETURN_LONG(count);
 }
 
-PHP_FUNCTION(libvirt_get_defined_domain_count)
+PHP_FUNCTION(libvirt_get_inactive_domain_count)
 {
 
 	 php_libvirt_connection *conn=NULL;
@@ -1195,7 +1197,9 @@ PHP_FUNCTION(libvirt_list_active_domains)
 {
 	 php_libvirt_connection *conn=NULL;
 	 zval *zconn;
-	 //zval *zdomain;
+	 php_libvirt_domain *res_domain;
+	 zval *zdomain;
+	 virDomainPtr domain;
 	 int count=-1;
 	 //int maxids=-1;
 	 int expectedcount=-1;
@@ -1216,7 +1220,20 @@ PHP_FUNCTION(libvirt_list_active_domains)
 	  array_init(return_value);
 	  for (i=0;i<count;i++)
 	  {
-		  add_next_index_long(return_value,  ids[i]);
+	     domain=virDomainLookupByID	(conn->conn,ids[i]);
+	      if (domain!=NULL) 
+	      {
+		      res_domain= emalloc(sizeof(php_libvirt_domain));
+		      res_domain->domain = domain;
+
+		      ALLOC_INIT_ZVAL(zdomain);
+#ifdef HAVE_GETCONNECT
+		      res_domain->conn=conn;
+#endif /* HAVE_GETCONNECT */
+		      
+		      ZEND_REGISTER_RESOURCE(zdomain, res_domain, le_libvirt_domain);
+		      add_next_index_zval(return_value,  zdomain);
+	      }
 	  }
   	  efree(ids);
 	  
@@ -1224,11 +1241,13 @@ PHP_FUNCTION(libvirt_list_active_domains)
 	  
 }
 
-PHP_FUNCTION(libvirt_list_defined_domains)
+PHP_FUNCTION(libvirt_list_inactive_domains)
 {
 	 php_libvirt_connection *conn=NULL;
 	 zval *zconn;
-	 //zval *zdomain;
+	 virDomainPtr domain;
+	 php_libvirt_domain *res_domain;
+	 zval *zdomain;
 	 int count=-1;
 	 //int maxids=-1;
 	 int expectedcount=-1;
@@ -1250,8 +1269,23 @@ PHP_FUNCTION(libvirt_list_defined_domains)
 	  if ((count != expectedcount) || (count<0)) RETURN_FALSE;
 	  for (i=0;i<count;i++)
 	  {
-		 add_next_index_string(return_value,  names[i],1);
-		 free(names[i]);
+		 domain=virDomainLookupByName	(conn->conn,names[i]);
+		 if (domain!=NULL) 
+		 {
+	 
+		      res_domain= emalloc(sizeof(php_libvirt_domain));
+		      res_domain->domain = domain;
+
+		      ALLOC_INIT_ZVAL(zdomain);
+#ifdef HAVE_GETCONNECT
+                      res_domain->conn=conn;
+#endif /* HAVE_GETCONNECT */
+		      
+		      ZEND_REGISTER_RESOURCE(zdomain, res_domain, le_libvirt_domain);
+		      add_next_index_zval(return_value,  zdomain);
+
+		 } 
+		  free(names[i]);
 	  }
 	  efree(names);
 	  
@@ -1978,7 +2012,7 @@ PHP_FUNCTION(libvirt_get_active_storagepool_count)
 	 RETURN_LONG(count);
 }
 
-PHP_FUNCTION(libvirt_get_defined_storagepool_count)
+PHP_FUNCTION(libvirt_get_inactive_storagepool_count)
 {
 	 php_libvirt_connection *conn=NULL;
 	 zval *zconn;
@@ -2321,7 +2355,7 @@ PHP_FUNCTION (libvirt_get_storagevolume_type_string)
 
 	if (state < 0 || state > ARRAY_SIZE (type_strings))
 	{
-		RETURN_STRING ("Err: Unknown State", 1);
+		RETURN_STRING ("Err: Unknown Type", 1);
 	}
 
 	RETURN_STRING (type_strings[state], 1);
@@ -2405,7 +2439,7 @@ PHP_FUNCTION(libvirt_get_active_network_count)
 	RETURN_LONG(val);
 }
 
-PHP_FUNCTION(libvirt_get_defined_network_count)
+PHP_FUNCTION(libvirt_get_inactive_network_count)
 {
 	php_libvirt_connection *conn = NULL;
 	zval *zconn;
@@ -2765,7 +2799,7 @@ PHP_FUNCTION(libvirt_list_active_domain_names)
 	efree(ids);
 }
 
-PHP_FUNCTION(libvirt_list_defined_domain_names)
+PHP_FUNCTION(libvirt_list_inactive_domain_names)
 {
 		php_libvirt_connection *conn=NULL;
 	zval *zconn;
@@ -2828,7 +2862,7 @@ PHP_FUNCTION(libvirt_list_active_storagepools)
 	}
 }
 
-PHP_FUNCTION(libvirt_list_defined_storagepools)
+PHP_FUNCTION(libvirt_list_inactive_storagepools)
 {
 	php_libvirt_connection *conn = NULL;
 	zval *zconn;
@@ -2878,7 +2912,7 @@ PHP_FUNCTION(libvirt_list_active_networks)
 	}
 }
 
-PHP_FUNCTION(libvirt_list_defined_networks)
+PHP_FUNCTION(libvirt_list_inactive_networks)
 {
 	php_libvirt_connection *conn = NULL;
 	zval *zconn;
@@ -3019,7 +3053,7 @@ PHP_FUNCTION(libvirt_node_device_get_xml_desc)
 	char *xml;
 	char *xml_out;
 
-	GET_DEVICE_FROM_ARGS ("r|l", &zdevice);
+	GET_DEVICE_FROM_ARGS ("r", &zdevice);
 	
 	xml = virNodeDeviceGetXMLDesc (device->device, 0);
 	if (xml == NULL)
@@ -3102,7 +3136,7 @@ PHP_FUNCTION(libvirt_node_device_reset)
 	RETURN_TRUE;
 }
 
-PHP_FUNCTION(libvirt_list_node_device)
+PHP_FUNCTION(libvirt_list_node_devices)
 {
 	php_libvirt_connection *conn = NULL;
 	zval *zconn;
@@ -3210,7 +3244,7 @@ PHP_FUNCTION(libvirt_list_active_interfaces)
 	}
 }
 
-PHP_FUNCTION(libvirt_list_defined_interfaces)
+PHP_FUNCTION(libvirt_list_inactive_interfaces)
 {
 	php_libvirt_connection *conn = NULL;
 	zval *zconn;
@@ -3275,7 +3309,7 @@ PHP_FUNCTION(libvirt_get_active_interface_count)
 	RETURN_LONG (count);
 }
 
-PHP_FUNCTION(libvirt_get_defined_interface_count)
+PHP_FUNCTION(libvirt_get_inactive_interface_count)
 {
 	php_libvirt_connection *conn = NULL;
 	zval *zconn;
@@ -3303,6 +3337,20 @@ PHP_FUNCTION(libvirt_interface_create)
 		RETURN_FALSE;
 	}
 
+	RETURN_TRUE;
+}
+
+PHP_FUNCTION(libvirt_interface_destroy)
+{
+	php_libvirt_interface *interface = NULL;
+	zval *zinterface;
+
+	GET_INTERFACE_FROM_ARGS ("r", &zinterface);
+
+	if (virInterfaceDestroy (interface->interface, 0) != 0)
+	{
+		RETURN_FALSE;
+	}
 	RETURN_TRUE;
 }
 

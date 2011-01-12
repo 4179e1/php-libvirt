@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-domain-attach-device" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_domain_attach_device</refname>
+  <refpurpose>Attach a XML descripted device to domain</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>bool</type><methodname>libvirt_domain_attach_device</methodname>
+   <methodparam><type>resource</type><parameter>domain</parameter></methodparam>
+   <methodparam><type>string</type><parameter>xml</parameter></methodparam>
+   <methodparam choice="opt"><type>integer</type><parameter>flags</parameter><initializer>0</initializer></methodparam>
+  </methodsynopsis>
+  <para>
+  Attach a virtual device to a domain, using the flags parameter to control how the device is attached. VIR_DOMAIN_DEVICE_MODIFY_CURRENT specifies that the device allocation is made based on current domain state. VIR_DOMAIN_DEVICE_MODIFY_LIVE specifies that the device shall be allocated to the active domain instance only and is not added to the persisted domain configuration. VIR_DOMAIN_DEVICE_MODIFY_CONFIG specifies that the device shall be allocated to the persisted domain configuration only. Note that the target hypervisor must return an error if unable to satisfy flags. E.g. the hypervisor driver will return failure if LIVE is specified but it only supports modifying the persisted device allocation. For compatibility, this method can also be used to change the media in an existing CDROM/Floppy device, however, applications are recommended to use the virDomainUpdateDeviceFlag method instead.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>domain</parameter></term>
+     <listitem>
+      <para>
+      Domain to attach device
+      </para>
+     </listitem>
+    </varlistentry>
+
+    <varlistentry>
+     <term><parameter>xml</parameter></term>
+     <listitem>
+      <para>
+      XML description of the device
+      </para>
+     </listitem>
+    </varlistentry>
+	
+	<varlistentry>
+     <term><parameter>flags</parameter></term>
+     <listitem>
+      <para>
+	   Logical OR of any of these flags:
+       <simplelist>
+        <member><constant>VIR_DOMAIN_DEVICE_MODIFY_CURRENT</constant> - Modify device allocation based on current domain state</member>
+        <member><constant>VIR_DOMAIN_DEVICE_MODIFY_LIVE</constant> - Modify live device allocation</member>
+        <member><constant>VIR_DOMAIN_DEVICE_MODIFY_CONFIG</constant> - Modify persisted device allocation</member>
+        <member><constant>VIR_DOMAIN_DEVICE_MODIFY_FORCE</constant> - Forcibly modify device (ex. force eject a cdrom)</member>
+       </simplelist>
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  &true; on success and &false; on failure
+  </para>
+ </refsect1>
+
+</refentry>

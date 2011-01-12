@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-get-max-vcpus" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_get_max_vcpus</refname>
+  <refpurpose>Provides the maximum number of virtual CPUs supported for a guest VM of a specific type.</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>integer</type><methodname>libvirt_get_max_vcpus</methodname>
+   <methodparam><type>resource</type><parameter>connect</parameter></methodparam>
+   <methodparam><type>string</type><parameter>type</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  Provides the maximum number of virtual CPUs supported for a guest VM of a specific type. The 'type' parameter here corresponds to the 'type' attribute in the domain element of the XML (e.g. "xen").
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>connect</parameter></term>
+     <listitem>
+      <para>
+      Connection resource of hypervisor, obtained from <function>libvirt_connect</function>.
+      </para>
+     </listitem>
+    </varlistentry>
+
+    <varlistentry>
+     <term><parameter>type</parameter></term>
+     <listitem>
+      <para>
+      The 'type' parameter here corresponds to the 'type' attribute in the domain element of the XML (e.g. "xen"). You can get type by <function>libvirt_get_type</function>.
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return &false; on failure and the max virtual cpu number that the VM support on success;
+  </para>
+ </refsect1>
+
+ <refsect1 role="example">
+  &reftitle.examples;
+  <para>
+   <example>
+    <title><function>libvirt_get_max_vcpus</function> example</title>
+    <para>
+     This example show the max virtual cpus that xen VM support.
+    </para>
+    <programlisting role="php">
+<![CDATA[
+<?PHP
+$conn = libvirt_connect("xen:///");
+$type = libvirt_get_type($conn);
+echo ("Max vcpus: " . libvirt_get_max_vcpus ($conn, $type));
+?>
+]]>
+      </programlisting>
+      &example.outputs.similar;
+      <screen>
+<![CDATA[
+Max vcpus: 32
+]]>
+    </screen>
+   </example>
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_connect</function></member>
+    <member><function>libvirt_get_type</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

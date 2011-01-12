@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-domain-snapshot-create-xml" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_domain_snapshot_create_xml</refname>
+  <refpurpose>Creates a new snapshot of a domain based on the snapshot xml contained in xmlDesc.</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>resource</type><methodname>libvirt_domain_snapshot_create_xml</methodname>
+   <methodparam><type>resource</type><parameter>domain</parameter></methodparam>
+   <methodparam><type>string</type><parameter>xml</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  Creates a new snapshot of a domain based on the snapshot xml contained in xmlDesc.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>domain</parameter></term>
+     <listitem>
+      <para>
+      Domain to get snapshot count from. You can get domain resource using various functions (i.e. <function>libvirt_domain_lookup_by_uuid</function> or <function>libvirt_list_domains</function>).
+      </para>
+     </listitem>
+    </varlistentry>
+
+    <varlistentry>
+     <term><parameter>xml</parameter></term>
+     <listitem>
+      <para>
+      XML description of the snapshot. For more details see <link xlink:href="http://www.libvirt.org/formatsnapshot.html">http://www.libvirt.org/formatsnapshot.html</link>.
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return &false; on failure and domain snapshot resource on success.
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_list_domains</function></member>
+    <member><function>libvirt_domain_lookup_by_uuid</function></member>
+    <member><function>libvirt_domain_lookup_by_uuid_string</function></member>
+    <member><function>libvirt_domain_lookup_by_id</function></member>
+    <member><function>libvirt_domain_lookup_by_name</function></member>
+    <member><function>libvirt_domain_snapshot_get_xml_desc</function></member>
+    <member><function>libvirt_domain_snapshot_delete</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-storagepool-destroy" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_storagepool_destroy</refname>
+  <refpurpose>Destroy an active storage pool</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>integer</type><methodname>libvirt_storagepool_destroy</methodname>
+   <methodparam><type>resource</type><parameter>pool</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  Destroy an active storage pool. This will deactivate the pool on the host, but keep any persistent config associated with it. If it has a persistent config it can later be restarted with <function>libvirt_storagepool_create</function>.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>pool</parameter></term>
+     <listitem>
+      <para>
+	  Storagepool resource, you can get it using various functions (e.g. <function>libvirt_storagepool_define_xml</function>, <function>libvirt_storagepool_lookup_by_name</function>).
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return &false; on failure and storagepool resource on success.
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_storagepool_define_xml</function></member>
+    <member><function>libvirt_storagepool_define_xml</function></member>
+    <member><function>libvirt_storagepool_lookup_by_name</function></member>
+    <member><function>libvirt_storagepool_lookup_by_uuid_string</function></member>
+    <member><function>libvirt_storagepool_create</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

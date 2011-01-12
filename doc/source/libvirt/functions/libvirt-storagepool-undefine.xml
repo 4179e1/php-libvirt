@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-storagepool-undefine" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_storagepool_undefine</refname>
+  <refpurpose>Undefine a storagepool </refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>bool</type><methodname>libvirt_storagepool_undefine</methodname>
+   <methodparam><type>resource</type><parameter>pool</parameter></methodparam>
+   <methodparam choice="opt"><type>%PARAM2_TYPE</type><parameter>%PARAM2_NAME</parameter><initializer>%INIT_VALUE</initializer></methodparam>
+  </methodsynopsis>
+  <para>
+   Undefine a storagepool but does not stop it if it is running. 
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>pool</parameter></term>
+     <listitem>
+      <para>
+      Storagepool resource, you can get it using various functions (e.g. <function>libvirt_storagepool_define_xml</function>, <function>libvirt_storagepool_lookup_by_name</function>).
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return &true; on success and &false; on failure.
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_storagepool_define_xml</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

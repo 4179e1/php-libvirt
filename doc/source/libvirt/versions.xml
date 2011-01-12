@@ -25,7 +25,7 @@ Example entries:
  <function name='libvirt_domain_get_uuid_string' from='php-libvirt 0.1'/>
  <function name='libvirt_list_domains' from='php-libvirt 0.1'/>
  <function name='libvirt_list_active_domains' from='php-libvirt 0.1'/>
- <function name='libvirt_list_defined_domains' from='php-libvirt 0.1'/>
+ <function name='libvirt_list_inactive_domains' from='php-libvirt 0.1'/>
  <function name='libvirt_domain_get_id' from='php-libvirt 0.1'/>
  <function name='libvirt_domain_lookup_by_id' from='php-libvirt 0.1'/>
  <function name='libvirt_domain_lookup_by_uuid' from='php-libvirt 0.1'/>
@@ -48,15 +48,110 @@ Example entries:
 <function name='libvirt_domain_interface_stats' from='php-libvirt 0.3'/>
  <function name='libvirt_node_get_info' from='php-libvirt 0.1'/>
  <function name='libvirt_version' from='php-libvirt 0.1'/>
-
- <function name='libvirt-storagepool-get-info' from='php-libvirt 0.4'/>
- <function name='libvirt-storagepool-lookup-by-name' from='php-libvirt 0.4'/>
- <function name='libvirt-storagevolume-create-xml' from='php-libvirt 0.4'/>
- <function name='libvirt-storagevolume-get-info' from='php-libvirt 0.4'/>
- <function name='libvirt-storagevolume-get-xml-desc' from='php-libvirt 0.4'/>
- <function name='libvirt-storagevolume-lookup-by-name' from='php-libvirt 0.4'/>
- <function name='libvirt-domain-get-connect' from='php-libvirt 0.4'/>
-
+ <function name='libvirt_storagepool_get_info' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagepool_lookup_by_name' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagevolume_create_xml' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagevolume_get_info' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagevolume_get_xml_desc' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagevolume_lookup-by-name' from='php-libvirt 0.4'/>
+ <function name='libvirt_domain-get-connect' from='php-libvirt 0.4'/>
+ <function name='libvirt_get_capabilities' from='php-libvirt 0.4'/>
+ <function name='libvirt_get_max_vcpus' from='php-libvirt 0.4'/>
+ <function name='libvirt_node_get_free_memory' from='php-libvirt 0.4'/>
+ <function name='libvirt_get_type' from='php-libvirt 0.4'/>
+ <function name='libvirt_get_version' from='php-libvirt 0.4'/>
+ <function name='libvirt_get_lib_version' from='php-libvirt 0.4'/>
+ <function name='libvirt_get_uri' from='php-libvirt 0.4'/>
+ <function name='libvirt_get_domain_state_string' from='php-libvirt 0.4'/>
+ <function name='libvirt_list_domain_names' from='php-libvirt 0.4'/>
+ <function name='libvirt_list_active_domain_names' from='php-libvirt 0.4'/>
+ <function name='libvirt_list_inactive_domain_names' from='php-libvirt 0.4'/>
+ <function name='libvirt_domain_get_autostart' from='php-libvirt 0.4'/>
+ <function name='libvirt_domain_set_autostart' from='php-libvirt 0.4'/>
+ <function name='libvirt_domain_is_active' from='php-libvirt 0.4'/>
+ <function name='libvirt_list_active_storagepools' from='php-libvirt 0.4'/>
+ <function name='libvirt_list_inactive_storagepools' from='php-libvirt 0.4'/>
+ <function name='libvirt_get_storagepool_state_string' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagepool_get_uuid_string' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagepool_get_name' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagepool_lookup_by_uuid_string' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagepool_get_xml_desc' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagepool_define_xml' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagepool_undefine' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagepool_create' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagepool_destroy' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagepool_get_connect' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagepool_is_active' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagepool_get_volume_count' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagepool_refresh' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagepool_set_autostart' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagepool_get_autostart' from='php-libvirt 0.4'/>
+ <function name='libvirt_get_storagepool_count' from='php-libvirt 0.4'/>
+ <function name='libvirt_get_active_storagepool_count' from='php-libvirt 0.4'/>
+ <function name='libvirt_get_inactive_storagepool_count' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagevolume_get_path' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagevolume_get_name' from='php-libvirt 0.4'/>
+ <function name='libvirt_get_storagevolume_type_string' from='php-libvirt 0.4'/>
+ <function name='libvirt_list_networks' from='php-libvirt 0.4'/>
+ <function name='libvirt_list_active_networks' from='php-libvirt 0.4'/>
+ <function name='libvirt_list_inactive_networks' from='php-libvirt 0.4'/>
+ <function name='libvirt_get_network_count' from='php-libvirt 0.4'/>
+ <function name='libvirt_get_active_network_count' from='php-libvirt 0.4'/>
+ <function name='libvirt_get_inactive_network_count' from='php-libvirt 0.4'/>
+ <function name='libvirt_network_define_xml' from='php-libvirt 0.4'/>
+ <function name='libvirt_network_create' from='php-libvirt 0.4'/>
+ <function name='libvirt_network_destroy' from='php-libvirt 0.4'/>
+ <function name='libvirt_network_undefine' from='php-libvirt 0.4'/>
+ <function name='libvirt_network_get_autostart' from='php-libvirt 0.4'/>
+ <function name='libvirt_network_get_bridge_name' from='php-libvirt 0.4'/>
+ <function name='libvirt_network_get_connect' from='php-libvirt 0.4'/>
+ <function name='libvirt_network_get_name' from='php-libvirt 0.4'/>
+ <function name='libvirt_network_get_uuid_string' from='php-libvirt 0.4'/>
+ <function name='libvirt_network_get_xml_desc' from='php-libvirt 0.4'/>
+ <function name='libvirt_network_is_active' from='php-libvirt 0.4'/>
+ <function name='libvirt_network_lookup_by_name' from='php-libvirt 0.4'/>
+ <function name='libvirt_network_lookup_by_uuid_string' from='php-libvirt 0.4'/>
+ <function name='libvirt_network_set_autostart' from='php-libvirt 0.4'/>
+ <function name='libvirt_domain_attach_device' from='php-libvirt 0.4'/>
+ <function name='libvirt_domain_detach_device' from='php-libvirt 0.4'/>
+ <function name='libvirt_node_device_destroy' from='php-libvirt 0.4'/>
+ <function name='libvirt_node_device_dettach' from='php-libvirt 0.4'/>
+ <function name='libvirt_node_device_get_name' from='php-libvirt 0.4'/>
+ <function name='libvirt_node_device_get_parent' from='php-libvirt 0.4'/>
+ <function name='libvirt_node_device_get_xml_desc' from='php-libvirt 0.4'/>
+ <function name='libvirt_node_device_lookup_by_name' from='php-libvirt 0.4'/>
+ <function name='libvirt_node_device_num_of_caps' from='php-libvirt 0.4'/>
+ <function name='libvirt_node_device_reattach' from='php-libvirt 0.4'/>
+ <function name='libvirt_node_device_reset' from='php-libvirt 0.4'/>
+ <function name='libvirt_list_node_devices' from='php-libvirt 0.4'/>
+ <function name='libvirt_get_node_device_count' from='php-libvirt 0.4'/>
+ <function name='libvirt_list_interfaces' from='php-libvirt 0.4'/>
+ <function name='libvirt_list_active_interfaces' from='php-libvirt 0.4'/>
+ <function name='libvirt_list_inactive_interfaces' from='php-libvirt 0.4'/>
+ <function name='libvirt_get_interface_count' from='php-libvirt 0.4'/>
+ <function name='libvirt_get_active_interface_count' from='php-libvirt 0.4'/>
+ <function name='libvirt_get_inactive_interface_count' from='php-libvirt 0.4'/>
+ <function name='libvirt_interface_create' from='php-libvirt 0.4'/>
+ <function name='libvirt_interface_destroy' from='php-libvirt 0.4'/>
+ <function name='libvirt_interface_define_xml' from='php-libvirt 0.4'/>
+ <function name='libvirt_interface_get_connect' from='php-libvirt 0.4'/>
+ <function name='libvirt_interface_get_mac_string' from='php-libvirt 0.4'/>
+ <function name='libvirt_interface_get_name' from='php-libvirt 0.4'/>
+ <function name='libvirt_interface_get_xml_desc' from='php-libvirt 0.4'/>
+ <function name='libvirt_interface_lookup_by_mac_string' from='php-libvirt 0.4'/>
+ <function name='libvirt_interface_lookup_by_name' from='php-libvirt 0.4'/>
+ <function name='libvirt_interface_undefine' from='php-libvirt 0.4'/>
+ <function name='libvirt_interface_is_active' from='php-libvirt 0.4'/>
+ <function name='libvirt_domain_has_current_snapshot' from='php-libvirt 0.4'/>
+ <function name='libvirt_domain_revert_to_snapshot' from='php-libvirt 0.4'/>
+ <function name='libvirt_domain_snapshot_create_xml' from='php-libvirt 0.4'/>
+ <function name='libvirt_domain_snapshot_current' from='php-libvirt 0.4'/>
+ <function name='libvirt_domain_snapshot_delete' from='php-libvirt 0.4'/>
+ <function name='libvirt_domain_snapshot_get_xml_desc' from='php-libvirt 0.4'/>
+ <function name='libvirt_list_domain_snapshots' from='php-libvirt 0.4'/>
+ <function name='libvirt_domain_snapshot_lookup_by_name' from='php-libvirt 0.4'/>
+ <function name='libvirt_domain_snapshot_count' from='php-libvirt 0.4'/>
+ 
 </versions>
 
 <!-- Keep this comment at the end of the file

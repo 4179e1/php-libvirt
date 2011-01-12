@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-node-device-reset" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_node_device_reset</refname>
+  <refpurpose>Reset a previously dettached node device to the node before or after assigning it to a guest.</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type></type><methodname>libvirt_node_device_reset</methodname>
+   <methodparam><type>Reset a previously dettached node device to the node before or after assigning it to a guest.</type><parameter>device</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  Reset a previously dettached node device to the node before or after assigning it to a guest. The exact reset semantics depends on the hypervisor and device type but, for example, KVM will attempt to reset PCI devices with a Function Level Reset, Secondary Bus Reset or a Power Management D-State reset. If the reset will affect other devices which are currently in use, this function may fail.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>device</parameter></term>
+     <listitem>
+      <para>
+	  Node device resource, you can get it using <function>libvirt_list_node_devices</function> or <function>libvirt_node_device_lookup_by_name</function>.
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return &true; on success and &false; on failure.
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_node_device_lookup_by_name</function></member>
+    <member><function>libvirt_list_node_devices</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

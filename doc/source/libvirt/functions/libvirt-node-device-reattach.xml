@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-node-device-reattach" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_node_device_reattach</refname>
+  <refpurpose>Re-attach a previously dettached node device to the node so that it may be used by the node again. </refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>bool</type><methodname>libvirt_node_device_reattach</methodname>
+   <methodparam><type>resource</type><parameter>device</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  Re-attach a previously dettached node device to the node so that it may be used by the node again. Depending on the hypervisor, this may involve operations such as resetting the device, unbinding it from a dummy device driver and binding it to its appropriate driver. If the device is currently in use by a guest, this method may fail.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>device</parameter></term>
+     <listitem>
+      <para>
+	  Node device resource, you can get it using <function>libvirt_list_node_devices</function> or <function>libvirt_node_device_lookup_by_name</function>.
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return &true; on success and &false; on failure.
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_node_device_dettach</function></member>
+    <member><function>libvirt_node_device_lookup_by_name</function></member>
+    <member><function>libvirt_list_node_devices</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

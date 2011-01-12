@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-network-get-bridge-name" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_network_get_bridge_name</refname>
+  <refpurpose>Provides a bridge interface name to which a domain may connect a network interface in order to join the network.</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>string</type><methodname>libvirt_network_get_bridge_name</methodname>
+   <methodparam><type>resource</type><parameter>network</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  Provides a bridge interface name to which a domain may connect a network interface in order to join the network.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>network</parameter></term>
+     <listitem>
+      <para>
+      Network resource, You can get it using various functions (e.g. <function>libvirt_netwdork_define_xml</function> or <function>libvirt_network_lookup_by_name</function>).
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return the bridge name, or &false; on failure.
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+     <member><function>libvirt_lookup_by_name</function></member>
+    <member><function>libvirt_lookup_by_uuid_string</function></member>
+    <member><function>libvirt_network_define_xml</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

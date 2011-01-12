@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-network-get-xml-desc" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_network_get_xml_desc</refname>
+  <refpurpose>Provide an XML description of the network.</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>string</type><methodname>libvirt_network_get_xml_desc</methodname>
+   <methodparam><type>resource</type><parameter>network</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  Provide an XML description of the network.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>network</parameter></term>
+     <listitem>
+      <para>
+      Network resource, You can get it using various functions (e.g. <function>libvirt_network_define_xml</function> or <function>libvirt_network_lookup_by_name</function>).
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return the XML description of the network, or &false; on failure. For more details, see <link xlink:href="http://libvirt.org/formatnetwork.html">http://libvirt.org/formatnetwork.html</link>.
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_lookup_by_name</function></member>
+    <member><function>libvirt_lookup_by_uuid_string</function></member>
+    <member><function>libvirt_network_define_xml</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-storagepool-get-volume-count" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_storagepool_get_volume_count</refname>
+  <refpurpose>Fetch the number of storage volumes within a pool</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>integer</type><methodname>libvirt_storagepool_get_volume_count</methodname>
+   <methodparam><type>resource</type><parameter>pool</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+ Fetch the number of storage volumes within a pool.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>pool</parameter></term>
+     <listitem>
+      <para>
+      Storagepool resource, you can get it using various functions (e.g. <function>libvirt_storagepool_define_xml</function>, <function>libvirt_storagepool_lookup_by_name</function>).
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return the number of storage volumes within the pool, or &false; on failure.
+  </para>
+ </refsect1>
+
+ <refsect1 role="example">
+  &reftitle.examples;
+  <para>
+   <example>
+    <title><function>libvirt_storagepool_get_volume_count</function> example</title>
+    <para>
+     %EXAMPLE_DESCRIPTION
+    </para>
+    <programlisting role="php">
+<![CDATA[
+%EXAMPLE_BODY
+]]>
+      </programlisting>
+      &example.outputs.similar;
+      <screen>
+<![CDATA[
+#EXAMPLE_RESULT
+]]>
+    </screen>
+   </example>
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>%REF_FUNC</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

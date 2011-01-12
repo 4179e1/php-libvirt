@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-get-storagevolume-type-string" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_get_storagevolume_type_string</refname>
+  <refpurpose>Return the stirng of a corresponding storagevolume type number</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>string</type><methodname>libvirt_get_storagevolume_type_string</methodname>
+   <methodparam><type>integer</type><parameter>type</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  Return the stirng of a corresponding storagevolume type number
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>type</parameter></term>
+     <listitem>
+      <para>
+	  Storagevolume type number, which is obtained from <function>libvirt_get_storagevolume_info</function>.
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return one of the following:
+  <simplelist>
+   <member><constant>VIR_STORAGE_VOL_FILE</constant></member>
+   <member><constant>VIR_STORAGE_VOL_BLOCK</constant></member>
+   <member>Err: Unknown Type - if an invalid state number is given</member>
+  </simplelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="example">
+  &reftitle.examples;
+  <para>
+   <example>
+    <title><function>libvirt_get_storagevolume_type_string</function> example</title>
+    <para>
+	This example show the usage of the function
+    </para>
+    <programlisting role="php">
+<![CDATA[
+<?PHP
+	$vol = libvirt_storagevolume_lookup_by_name ($conn, "vm-vol");
+	$info = libvirt_storagevolume_get_info ($vol);
+	echo (libvirt_get_storagevolume_type_string ($info['type']);
+?>
+]]>
+      </programlisting>
+      &example.outputs.similar;
+      <screen>
+<![CDATA[
+VIR_STORAGE_VOL_FILE
+]]>
+    </screen>
+   </example>
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_storagevolume_get_info</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

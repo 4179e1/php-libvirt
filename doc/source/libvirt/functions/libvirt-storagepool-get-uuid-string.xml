@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-storagepool-get-uuid-string" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_storagepool_get_uuid_string</refname>
+  <refpurpose>Get the UUID for a storagepool as string</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>string</type><methodname>libvirt_storagepool_get_uuid_string</methodname>
+   <methodparam><type>resource</type><parameter>pool</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+   Get the UUID for a domain as string (i.e. 25ab2490-7c4c-099f-b647-45ff8efa73f6 ). For more information about UUID see RFC4122.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>pool</parameter></term>
+     <listitem>
+      <para>
+      Storagepool resource, you can get it using various functions (e.g. <function>libvirt_storagepool_define_xml</function>, <function>libvirt_storagepool_lookup_by_name</function>).
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return the UUID string of storagepool or &false; on failure.
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt-storagepool-lookup-by-uuid-string</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

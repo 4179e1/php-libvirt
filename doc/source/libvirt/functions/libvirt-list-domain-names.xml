@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-list-domain-names" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_list_domain_names</refname>
+  <refpurpose>Get all domain names</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>array</type><methodname>libvirt_list_domain_names</methodname>
+   <methodparam><type>resource</type><parameter>connect</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  This function returns array of domain names for all domains defined and/or running on the hypervisor.  
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>connect</parameter></term>
+     <listitem>
+      <para>
+ 		Connection resource of hypervisor.
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Array of domain names for all domains. &false; on failure
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_list_active_domain_names</function></member>
+    <member><function>libvirt_list_inactive_domain_names</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>

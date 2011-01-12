@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xml:id="function.libvirt-get-domain-state-string" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>libvirt_get_domain_state_string</refname>
+  <refpurpose>Return the string of a corresponding domain state number </refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>string</type><methodname>libvirt_get_domain_state_string</methodname>
+   <methodparam><type>integer</type><parameter>state</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+  Return the string of a corresponding domain state number 
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+
+    <varlistentry>
+     <term><parameter>state</parameter></term>
+     <listitem>
+      <para>
+      Domain state number, which is obtained from <function>libvirt_get_domain_get_info</function>.
+      </para>
+     </listitem>
+    </varlistentry>
+
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+  Return one of the following:
+  <simplelist>
+   <member><constant>VIR_DOMAIN_NOSTATE</constant></member>
+   <member><constant>VIR_DOMAIN_RUNNING</constant></member>
+   <member><constant>VIR_DOMAIN_BLOCKED</constant></member>
+   <member><constant>VIR_DOMAIN_PAUSED</constant></member>
+   <member><constant>VIR_DOMAIN_SHUTDOWN</constant></member>
+   <member><constant>VIR_DOMAIN_SHUTOFF</constant></member>
+   <member><constant>VIR_DOAMIN_CRASHED</constant></member>
+   <member>Err: Unknown State - if an invalid state number is given</member>
+  </simplelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="example">
+  &reftitle.examples;
+  <para>
+   <example>
+    <title><function>libvirt_get_domain_state_string</function> example</title>
+    <para>
+     This exmaple show the usage of the function.
+    </para>
+    <programlisting role="php">
+<![CDATA[
+<?PHP
+// omitted
+$info = libvirt_domain_get_info ($domain);
+echo (libvirt_get_domain_state_string ($info['state']);
+?>
+]]>
+      </programlisting>
+      &example.outputs.similar;
+      <screen>
+<![CDATA[
+VIR_DOAMIN_RUNNING
+]]>
+    </screen>
+   </example>
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>libvirt_domain_get_info</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>
