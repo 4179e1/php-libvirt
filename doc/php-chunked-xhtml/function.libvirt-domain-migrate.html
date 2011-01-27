@@ -24,10 +24,10 @@
     ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$domain</tt></span>
    , <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$dconn</tt></span>
    , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$flags</tt></span>
-   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$dname</tt></span>
-   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$uri</tt></span>
-   , <span class="methodparam"><span class="type">integer</span> <tt class="parameter">$bandwith</tt></span>
-   )</div>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$dname</tt><span class="initializer"> = null</span></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$uri</tt><span class="initializer"> = null</span></span>
+   [, <span class="methodparam"><span class="type">integer</span> <tt class="parameter">$bandwith</tt><span class="initializer"> = 0</span></span>
+  ]]] )</div>
 
   <p class="para rdfs-comment">
    Performs migration of the domain from one host to another. For description of parameters and flags see <a href="http://www.libvirt.org/html/libvirt-libvirt.html#virDomainMigrate" class="link external">&raquo; original documentation</a>.

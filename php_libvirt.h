@@ -187,6 +187,8 @@ PHP_FUNCTION(libvirt_storagevolume_get_xml_desc);
 PHP_FUNCTION(libvirt_storagevolume_create_xml);
 PHP_FUNCTION(libvirt_storagevolume_get_path);
 PHP_FUNCTION(libvirt_storagevolume_get_name);
+PHP_FUNCTION(libvirt_storagevolume_delete);
+PHP_FUNCTION(libvirt_storagevolume_wipe);
 PHP_FUNCTION(libvirt_get_storagevolume_type_string);
 PHP_FUNCTION(libvirt_list_networks);
 PHP_FUNCTION(libvirt_list_active_networks);

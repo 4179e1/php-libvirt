@@ -14,9 +14,8 @@
    <methodparam ><type>resource</type><parameter>domain</parameter></methodparam>
    <methodparam ><type>string</type><parameter>duri</parameter></methodparam>
    <methodparam ><type>int</type><parameter>flags</parameter></methodparam>
-   <methodparam ><type>string</type><parameter>dname</parameter></methodparam>
-   <methodparam ><type>string</type><parameter>uri</parameter></methodparam>
-   <methodparam ><type>integer</type><parameter>bandwith</parameter></methodparam>
+   <methodparam choice="opt"><type>string</type><parameter>dname</parameter><initializer>null</initializer></methodparam>
+   <methodparam choice="opt"><type>integer</type><parameter>bandwith</parameter><initializer>0</initializer></methodparam>
   </methodsynopsis>
   <para>
    Performs migration of the domain from one host to another. For description of parameters and flags see <link xlink:href="http://www.libvirt.org/html/libvirt-libvirt.html#virDomainMigrateToUri">original documentation</link>.

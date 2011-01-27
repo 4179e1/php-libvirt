@@ -91,6 +91,8 @@ Example entries:
  <function name='libvirt_get_inactive_storagepool_count' from='php-libvirt 0.4'/>
  <function name='libvirt_storagevolume_get_path' from='php-libvirt 0.4'/>
  <function name='libvirt_storagevolume_get_name' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagevolume_delete' from='php-libvirt 0.4'/>
+ <function name='libvirt_storagevolume_wipe' from='php-libvirt 0.4'/>
  <function name='libvirt_get_storagevolume_type_string' from='php-libvirt 0.4'/>
  <function name='libvirt_list_networks' from='php-libvirt 0.4'/>
  <function name='libvirt_list_active_networks' from='php-libvirt 0.4'/>

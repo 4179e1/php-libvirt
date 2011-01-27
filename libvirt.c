@@ -119,6 +119,8 @@ static function_entry libvirt_functions[] = {
      PHP_FE(libvirt_storagevolume_create_xml,NULL)
 	 PHP_FE(libvirt_storagevolume_get_path, NULL)
 	 PHP_FE(libvirt_storagevolume_get_name, NULL)
+	 PHP_FE(libvirt_storagevolume_delete, NULL)
+	 PHP_FE(libvirt_storagevolume_wipe, NULL)
 	 PHP_FE(libvirt_get_storagevolume_type_string, NULL)
 	 PHP_FE(libvirt_list_networks, NULL)
 	 PHP_FE(libvirt_get_network_count, NULL)
@@ -1707,9 +1709,9 @@ PHP_FUNCTION(libvirt_domain_migrate_to_uri)
 	 //int i;
 	 char *duri;
 	 int duri_len;
-	 char *dname;
+	 char *dname = NULL;
 	 int dname_len;
-         long bandwith;	 
+         long bandwith = 0;	 
 	 	 	 
 	 
 	 dname=NULL;
@@ -1741,10 +1743,10 @@ PHP_FUNCTION(libvirt_domain_migrate)
 	 //int retval;
 	 long flags=0;
 	 //int i;
-	 char *dname;
+	 char *dname = NULL;
 	 int dname_len;
-         long bandwith;
-         char *uri;
+         long bandwith = 0;
+         char *uri = NULL;
          int uri_len;	 
 	 	 	 
 	 
@@ -1753,7 +1755,7 @@ PHP_FUNCTION(libvirt_domain_migrate)
 	 bandwith=0;
 	 uri_len=0;
 	 uri=NULL;
-	 GET_DOMAIN_FROM_ARGS("rrl|sl",&zdomain,&zdconn,&flags,&dname,&dname_len,&uri,&uri_len,&bandwith);
+	 GET_DOMAIN_FROM_ARGS("rrl|ssl",&zdomain,&zdconn,&flags,&dname,&dname_len,&uri,&uri_len,&bandwith);
 	 ZEND_FETCH_RESOURCE(dconn, php_libvirt_connection*, &zdconn, -1, PHP_LIBVIRT_CONNECTION_RES_NAME, le_libvirt_connection);
 	  if ((dconn==NULL) || (dconn->conn==NULL)) RETURN_FALSE;
 	 
@@ -3726,4 +3728,34 @@ PHP_FUNCTION(libvirt_domain_snapshot_count)
 	}
 
 	RETURN_LONG (count);
+}
+
+PHP_FUNCTION(libvirt_storagevolume_delete)
+{
+	php_libvirt_volume *volume = NULL;
+	zval *zvolume;
+
+	GET_VOLUME_FROM_ARGS ("r", &zvolume);
+
+	if (virStorageVolDelete (volume->volume, 0) == 0)
+	{
+		RETURN_TRUE;
+	}
+
+	RETURN_FALSE;
+}
+
+PHP_FUNCTION(libvirt_storagevolume_wipe)
+{
+	php_libvirt_volume *volume = NULL;
+	zval *zvolume;
+
+	GET_VOLUME_FROM_ARGS ("r", &zvolume);
+
+	if (virStorageVolWipe (volume->volume, 0) == 0)
+	{
+		RETURN_TRUE;
+	}
+
+	RETURN_FALSE;
 }
